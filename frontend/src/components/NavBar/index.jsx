@@ -13,7 +13,10 @@ const NavBar = () => {
       <NavLink to="/">
         <p>projects</p>
       </NavLink>
-      <img src={logo} />
+      <NavLink to="/">
+        <img src={logo} />
+      </NavLink>
+
       <NavLink to="/">
         <p>analytics</p>
       </NavLink>

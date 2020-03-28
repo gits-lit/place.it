@@ -1,0 +1,111 @@
+.home-nav-bar {
+    align-items: center;
+    background-color: white;
+    display: flex;
+    font-family: 'Raleway', sans-serif;
+    height: 100px;
+    justify-content: center;
+    width: 100vw;
+    z-index: 200;
+
+    .button {
+        background-color: #F78F39;
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+        padding: 6px 20px;
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+        &:hover {
+            box-shadow: 0px 0px 10px #F78F39;
+            transform: translate(0px, -2px);
+        }
+    }
+
+    a:link {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: black;
+    }
+
+    img {
+        height: 60px;
+    }
+
+    * {
+        font-size: 1.2rem;
+        margin: auto;
+    }
+}
+
+.home-page {
+    font-family: 'Raleway', sans-serif;
+
+    .item-wrapper {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 12vh;
+
+        .text {
+			margin-top: 6vh;
+            p {
+                font-size: 20px;
+            }
+
+            h1 {
+                font-size: 72px;
+                font-weight: 1000;
+                line-height: 50px;
+            }
+
+            .buttons {
+                display: flex;
+                position: absolute;
+                left: 15%;
+
+                .home-button {
+                    padding: 10px 50px;
+                    margin-right: 2.5vw;
+                    font-size: 22px;
+                    color: black;
+                    border: 1px solid black;
+                    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+                    &:hover {
+                        color: white;
+                        background-color: black;
+                        transform: translate(0px, -1px);
+                    }
+                }
+            }
+        }
+
+        .building_1 {
+            animation: action 3s infinite  alternate;
+        }
+
+
+		@keyframes action {
+			0% { transform: translateY(0); }
+			100% { transform: translateY(-10px); }
+		}
+    }
+
+    .wLeft {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+    }
+
+    .wRight {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+    }
+
+
+}

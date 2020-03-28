@@ -8,8 +8,68 @@
   width: 30vw;
   z-index: 100;
 
+  .form-wrapper {
+    padding: 0px 25px;
+    margin-top: 48px;
+    font-family: 'Raleway', sans-serif;
+
+    .horizontal-items {
+      display: flex;
+      justify-content: space-between;
+
+      .half-input {
+        width: 47.5%;
+      }
+    }
+
+    .radius-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+
+      .quarter-input {
+        width: 47.5%;
+      }
+    }
+
+    .button {
+      width: 100%;
+      height: 42px;
+      margin-top: 20px;
+      background-color: #E9FCE6;
+      border: 1.32px solid rgb(212, 241, 207);
+
+      &:hover {
+        color: #369336;
+      }
+    }
+
+    .built {
+      position: absolute;
+      bottom: 0%;
+      right: 3%;
+    }
+
+    label {
+      font-size: 1.4rem;
+    }
+
+    .ant-form-item {
+      margin-bottom: 22px;
+    }
+
+    .ant-input {
+      height: 35px;
+    }
+
+    .ant-input-number {
+      height: 35px;
+      width: 100% !important;
+    }
+  }
+
   h1 {
     font-size: 2rem;
-    margin-left: 10%;
+    margin-left: 5%;
   }
 }
