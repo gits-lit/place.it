@@ -10,5 +10,9 @@
   "Retail Store": {
     "color": "#7EEEB0",
     "image": "retail-store.svg"
+  },
+  "Retail Store2": {
+    "color": "#7EEEBA",
+    "image": "retail-store.svg"
   }
 }

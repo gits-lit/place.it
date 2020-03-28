@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 
 import BuildingCarousel from '../components/BuildingCarousel';
 import { setBuildingType } from '../actions/buildingActions';
+import buildingTypes from '../assets/building-types.json'
+
+let buildings = []
+
+for (let building in buildingTypes) {
+  buildings.push([building, buildingTypes[building]]);
+}
 
 const BuildingCarouselContainer = props => {
 
@@ -22,6 +29,7 @@ const BuildingCarouselContainer = props => {
     <BuildingCarousel
       onChange={onChange}
       onClick={props.onClick}
+      buildings={buildings}
       />
   );
 };
