@@ -9,6 +9,7 @@ const Map = ReactMapboxGl({
 const MapComponent = (props) => {
   return (
     <Map
+      antialias={true}
       containerStyle={{
         height: '100vh',
         width: '100vw'
