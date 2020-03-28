@@ -1,4 +1,5 @@
-const getTreeData = require("../insights/tree")
+const getTreeData = require("../insights/tree");
+const getTransitData = require("../insights/transit");
 
 exports.handle_get_insight = async (req, res) => {
     const lat = req.query.lat;
@@ -15,13 +16,16 @@ exports.handle_get_insight = async (req, res) => {
     
     try {
         let trees = await getTreeData(lat, lng, radius);
-
+        let transit = await getTransitData(lat, lng);
+        debugger;
+        console.log(transit)
         res.status(200);
         res.json({
             rating: "A",
             jobs: -300,
             trees: parseInt(trees.toString()),
-            carbon: 500
+            carbon: 500,
+            transit: transit
         });
     } catch(err) {
         res.status(500);

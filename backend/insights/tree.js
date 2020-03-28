@@ -1,3 +1,6 @@
+/**
+ * Estimates the number of trees in a certain area
+ */
 module.exports = async function(lat, lng, radius) {
     return new Promise(async (resolve, reject) => {
         let getTreeData = new Promise((success, nosuccess) => {
@@ -16,11 +19,12 @@ module.exports = async function(lat, lng, radius) {
     
         try {
             let trees = await getTreeData;
-            console.log(trees.toString())
             trees = parseInt(trees.toString());
             resolve(trees);
         } catch (err) {
-            reject(`${err}`);
+            reject({
+                err: err
+            });
         }
     })
 }
