@@ -15,13 +15,13 @@ const MapComponent = (props) => {
       }}
       center={[-118.2437, 34.0522]}
       onClick={props.mapClick}
+      onStyleLoad={(map, loadEvent) => {
+
+      }}
       pitch = {[60]}
       style="mapbox://styles/mapbox/light-v10"
       zoom = {[15]}
     >
-      <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-        <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-      </Layer>
     </Map>
   );
 }

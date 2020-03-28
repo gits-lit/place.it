@@ -21,6 +21,8 @@
     "react-particles-js": "^2.7.0",
     "react-scripts": "3.3.0",
     "react-typist": "^2.0.5",
+    "three": "^0.115.0",
+    "three-gltf-loader": "^1.111.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
