@@ -12,7 +12,7 @@ const MapComponent = (props) => {
       antialias={true}
       containerStyle={{
         height: '110vh',
-        width: '70vw',
+        width: '100vw',
         position: 'absolute',
         right: '0'
       }}

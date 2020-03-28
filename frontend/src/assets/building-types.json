@@ -1,0 +1,14 @@
+{
+  "Office Building": {
+    "color": "#EE7474",
+    "image": "office-building.svg"
+  },
+  "Family House": {
+    "color": "#C989FB",
+    "image": "family-house.svg"
+  },
+  "Retail Store": {
+    "color": "#7EEEB0",
+    "image": "retail-store.svg"
+  }
+}

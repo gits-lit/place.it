@@ -2,7 +2,7 @@ import { MercatorCoordinate } from 'mapbox-gl';
 import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
-export const placeBuilding = (map, lng, lat) => {
+export const placeBuilding = (map, lng, lat, color) => {
 
   // parameters to ensure the model is georeferenced correctly on the map
   var modelOrigin = [lng, lat];
@@ -63,7 +63,7 @@ export const placeBuilding = (map, lng, lat) => {
     this.scene.add(directionalLight2);
 
     var geometry = new THREE.BoxGeometry( 40, 0.2, 40 );
-    var material = new THREE.MeshLambertMaterial( {color: 0xff0000} );
+    var material = new THREE.MeshLambertMaterial( {color: color} );
     var cube = new THREE.Mesh( geometry, material );
     this.scene.add( cube );
     TweenMax.to(cube.scale, 1, { x: 1, y: 400, z: 1 });
