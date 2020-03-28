@@ -11,8 +11,10 @@ const MapComponent = (props) => {
     <Map
       antialias={true}
       containerStyle={{
-        height: '100vh',
-        width: '100vw'
+        height: '110vh',
+        width: '70vw',
+        position: 'absolute',
+        right: '0'
       }}
       center={[-118.2437, 34.0522]}
       onClick={props.mapClick}

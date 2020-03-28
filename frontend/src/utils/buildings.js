@@ -129,7 +129,7 @@ export const loadBuildings = (map) => {
       'source-layer': 'building',
       'filter': ['==', 'extrude', 'true'],
       'type': 'fill-extrusion',
-      'minzoom': 15,
+      'minzoom': 0,
       'paint': {
           'fill-extrusion-color': '#aaa',
           'fill-extrusion-height': {

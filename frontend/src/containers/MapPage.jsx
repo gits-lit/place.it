@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Map from '../components/Map';
+import NavBar from '../components/NavBar';
 import { placeBuilding, loadBuildings } from '../utils/buildings';
 
 const MapPage = () => {
@@ -18,6 +19,7 @@ const MapPage = () => {
 
   return (
     <div>
+      <NavBar />
       <Map mapClick={mapClick} mapLoad={mapLoad}/>
     </div>
   );
