@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Map from '../components/Map';
-import { placeBuilding } from '../utils/buildings';
+import { placeBuilding, loadBuildings } from '../utils/buildings';
 
 const MapPage = () => {
   const mapClick = (map, event) => {
@@ -12,10 +12,13 @@ const MapPage = () => {
     console.log(lng, lat);
   }
 
+  const mapLoad = (map) => {
+    loadBuildings(map);
+  }
 
   return (
     <div>
-      <Map mapClick={mapClick}/>
+      <Map mapClick={mapClick} mapLoad={mapLoad}/>
     </div>
   );
 };

@@ -16,9 +16,7 @@ const MapComponent = (props) => {
       }}
       center={[-118.2437, 34.0522]}
       onClick={props.mapClick}
-      onStyleLoad={(map, loadEvent) => {
-
-      }}
+      onStyleLoad={props.mapLoad}
       pitch = {[60]}
       style="mapbox://styles/mapbox/light-v10"
       zoom = {[15]}

@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
 export const placeBuilding = (map, lng, lat) => {
+
   // parameters to ensure the model is georeferenced correctly on the map
   var modelOrigin = [lng, lat];
   var modelAltitude = 0;
@@ -30,6 +31,24 @@ export const placeBuilding = (map, lng, lat) => {
     id: 'building',
     type: 'custom',
     renderingMode: '3d',
+    'fill-extrusion-height': [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    15,
+    0,
+    15.05,
+    ['get', 'height']
+    ],
+    'fill-extrusion-base': [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    15,
+    0,
+    15.05,
+    ['get', 'min_height']
+    ],
     onAdd: function(map, gl) {
     this.camera = new THREE.Camera();
     this.scene = new THREE.Scene();
@@ -47,8 +66,8 @@ export const placeBuilding = (map, lng, lat) => {
     var material = new THREE.MeshLambertMaterial( {color: 0xff0000} );
     var cube = new THREE.Mesh( geometry, material );
     this.scene.add( cube );
-    TweenMax.to(cube.scale, 1.2, { x: 1, y: 400, z: 1 });
-    TweenMax.from(cube.position, 1.2,  {y: -40});
+    TweenMax.to(cube.scale, 1, { x: 1, y: 400, z: 1 });
+    TweenMax.from(cube.position, 1,  {y: -40});
     this.map = map;
 
     // use the Mapbox GL JS map canvas for three.js
@@ -78,8 +97,8 @@ export const placeBuilding = (map, lng, lat) => {
     var l = new THREE.Matrix4()
     .makeTranslation(
     modelTransform.translateX,
-    modelTransform.translateY - 0.000002,
-    modelTransform.translateZ - 0.0000002
+    modelTransform.translateY - 0.0000002,
+    modelTransform.translateZ + 0.0000012
     )
     .scale(
     new THREE.Vector3(
@@ -100,5 +119,28 @@ export const placeBuilding = (map, lng, lat) => {
   };
 
   map.removeLayer('building');
-  map.addLayer(customLayer, 0);
+  map.addLayer(customLayer, 'waterway-label');
+}
+
+export const loadBuildings = (map) => {
+  map.addLayer({
+      'id': '3d-buildings',
+      'source': 'composite',
+      'source-layer': 'building',
+      'filter': ['==', 'extrude', 'true'],
+      'type': 'fill-extrusion',
+      'minzoom': 15,
+      'paint': {
+          'fill-extrusion-color': '#aaa',
+          'fill-extrusion-height': {
+              'type': 'identity',
+              'property': 'height'
+          },
+          'fill-extrusion-base': {
+              'type': 'identity',
+              'property': 'min_height'
+          },
+          'fill-extrusion-opacity': .5
+      }
+  });
 }
