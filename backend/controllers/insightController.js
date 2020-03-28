@@ -1,6 +1,7 @@
 const getTreeData = require("../insights/tree");
 const getTransitData = require("../insights/transit");
 const getParkingData = require("../insights/parking");
+const getCrimes = require("../insights/crime");
 
 exports.handle_get_insight = async (req, res) => {
     const lat = req.query.lat;
@@ -9,6 +10,7 @@ exports.handle_get_insight = async (req, res) => {
     const radius = req.query.radius; // deprecated
     const width = req.query.width;
     const length = req.query.length;
+    const useApis = req.query.useApis;
 
     const squareFootage = req.query.squareFootage;
     const occupants = req.query.occupants;
@@ -17,8 +19,12 @@ exports.handle_get_insight = async (req, res) => {
     
     try {
         let trees = await getTreeData(lat, lng, radius);
-        let transit = await getTransitData(lat, lng);
         let parkingSpaces = getParkingData(type, squareFootage, occupants);
+
+        let transit = (useApis == 1) ? await getTransitData(lat, lng) : "APIs Not Enabled to Preserve Calls";
+        let crimes = (useApis == 1) ? await getCrimes(lat, lng) : "APIs Not Enabled to Preserve Calls";
+
+        console.log(crimes)
 
         res.status(200);
         res.json({
@@ -27,7 +33,8 @@ exports.handle_get_insight = async (req, res) => {
             trees: parseInt(trees.toString()),
             carbon: 500,
             transit: transit,
-            parkingSpaces: parkingSpaces
+            parkingSpaces: parkingSpaces,
+            crimes: crimes
         });
     } catch(err) {
         res.status(500);
