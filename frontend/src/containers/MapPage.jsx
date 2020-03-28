@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Map from '../components/Map';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
+import Score from '../components/Score';
 import { placeBuilding, loadBuildings } from '../utils/buildings';
 
 // TODO Something is being weird and not letting me use props but then again
@@ -35,6 +36,7 @@ const MapPage = (props) => {
       <SideBar />
       <NavBar />
       <Map mapClick={mapClick} mapLoad={mapLoad}/>
+      <Score />
     </div>
   );
 };
