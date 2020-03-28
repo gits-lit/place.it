@@ -6,7 +6,10 @@ router.get('/', async (req, res, next) => {
     const lat = req.query.lat;
     const lng = req.query.lng;
     const type = req.query.type;
-    const radius = req.query.radius;
+    const radius = req.query.radius; // deprecated
+    const width = req.query.width;
+    const length = req.querty.length;
+
     const squareFootage = req.query.squareFootage;
     const occupancy = req.query.occupancy;
     const height = req.query.height;
