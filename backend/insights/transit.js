@@ -22,11 +22,16 @@ module.exports = async function(lat, lng) {
                 reject(err);
             } else {
                 body = JSON.parse(body);
+                
                 if (body.status == 1) {
+                    body.transit.rating = (body.transit.score > 100) ? "amazing" : (body.transit.score > 50) ? "okay" : "bad"
+                    body.bike.rating = (body.bike.score > 100) ? "amazing" : (body.bike.score > 50) ? "okay" : "bad"
+                
                     resolve({
                         walk: {
                             score: body.walkscore,
                             description: body.description,
+                            rating: (body.walkscore > 100) ? "amazing" : (body.walkscore > 50) ? "okay" : "bad"
                         },
                         transit: body.transit,
                         bike: body.bike,
