@@ -22,6 +22,9 @@ long = float(sys.argv[4])
 
 gmaps = googlemaps.Client(key=gmapKey)
 
+jsonResponse = { }
+jsonResponse['taxes'] = "null"
+jsonResponse['land_value'] = "null" 
 # Geocoding an address
 reverse_geocode_result = gmaps.reverse_geocode((lat, long))
 # print(reverse_geocode_result)
@@ -54,15 +57,18 @@ if 'formatted_address' in results:
         r = requests.get(url = "https://apis.estated.com/v4/property", params = data)
         response = r.json()
         response = response['data']
+        if 'taxes' in response:
+                amt = response['taxes'][0]['amount']
+                jsonResponse['taxes'] = amt
         if 'assessments' in response:
                 assessments = response['assessments']
                 # print(assessments)
                 # full assessments is [{'year': 2019, 'land_value': 240757, 'improvement_value': 82576, 'total_value': 323333}]
-                print(assessments[0]['land_value'])
+                jsonResponse['land_value'] = assessments[0]['land_value']
         else:
                 print("Assessments not available for this location")
 else:
         print("An address does not exist here")
-
+print(jsonResponse)
         
         
