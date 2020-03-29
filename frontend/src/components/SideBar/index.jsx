@@ -96,6 +96,9 @@ const SideBar = (props) => {
           <Button className="button">
             Calculate Score
           </Button>
+          <Button className="button-2" onClick={props.clearBuildings}>
+            Clear Buildings
+          </Button>
         </Form>
         <p className="built">Built with ☕ at LA Hacks 2020</p>
       </div>

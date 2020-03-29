@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SideBar from '../components/SideBar';
 import { updateBuildingForm } from '../actions/buildingActions';
+import { clearBuildings } from '../actions/mapActions';
 
 const SideBarForm = props => {
 
@@ -10,9 +11,15 @@ const SideBarForm = props => {
     props.updateBuildingForm(key, value);
   }
 
+  const clearBuildings = () => {
+    console.log('clearing i think')
+    props.clearBuildings(window.map);
+  }
+
   return (
     <SideBar
       setValue={setValue}
+      clearBuildings={clearBuildings}
     />
   );
 };
@@ -23,10 +30,11 @@ const mapStateToProps = state => ({
   height: state.building.height,
   length: state.building.length,
   width: state.building.width,
-  siz: state.building.size
+  size: state.building.size,
+  map: state.building.map
 });
 
 export default connect(
   mapStateToProps,
-  { updateBuildingForm }
+  { updateBuildingForm, clearBuildings }
 )(SideBarForm);

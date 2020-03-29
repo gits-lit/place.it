@@ -5,6 +5,8 @@ import { TweenMax } from 'gsap';
 import { ADD_BUILDINGS, CLEAR_BUILDINGS } from './types';
 import { notify } from '../utils';
 
+let allLayers = []
+
 export const placeBuilding = (map, lng, lat, color, length, width, height) => {
 
   // parameters to ensure the model is georeferenced correctly on the map
@@ -138,6 +140,9 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
 
   try {
     map.addLayer(customLayer, labelLayerId);
+    allLayers.push(customLayer.id);
+    console.log(allLayers);
+    window.map = map;
   }
   catch (error) {
     // TODO: Notify
@@ -168,15 +173,15 @@ export const loadBuildings = (map) => {
   });
 }
 
-export const clearBuildings = (map) => async dispatch => {
-  const layers = map.getStyle().layers;
+export const clearBuildings = () => async dispatch => {
+  const map = window.map;
 
-  let labelLayerId;
-  for (let i = 0; i < layers.length; i++) {
-    if (layers[i].type === 'custom') {
-      map.removeLayer(layers[i].id);
-    }
+  for (let i = 0; i < allLayers.length; i++) {
+    map.removeLayer(allLayers[i]);
   }
+
+  allLayers = [];
+
   dispatch({
     type: CLEAR_BUILDINGS,
   });

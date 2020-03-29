@@ -56,12 +56,13 @@ const MapPage = (props) => {
   }
 
   const mapLoad = (map) => {
+    window.map = map;
     loadBuildings(map);
   }
 
   return (
     <div>
-      <SideBar />
+      <SideBar/>
       <NavBar />
       <Map mapClick={mapClick} mapLoad={mapLoad}/>
       <Score />
@@ -83,11 +84,11 @@ const mapStateToProps = state => {
     height: state.building.height,
     length: state.building.length,
     width: state.building.width,
-
+    map: state.building.map
   })
 };
 
 export default connect(
   mapStateToProps,
-  { addBuildings }
+  { addBuildings, loadBuildings }
 )(MapPage);
