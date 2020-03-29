@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import './style.less';
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <nav className="map-nav-bar">
       <NavLink to="/">
@@ -16,10 +16,9 @@ const NavBar = () => {
       <NavLink to="/">
         <img src={logo} />
       </NavLink>
-
-      <NavLink to="/">
+      <div className="modal" onClick={props.calculateScore}>
         <p>analytics</p>
-      </NavLink>
+      </div>
       <NavLink to="/">
         <p>profile</p>
       </NavLink>

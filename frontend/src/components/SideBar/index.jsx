@@ -4,7 +4,7 @@ import { Form, Input, InputNumber, Button } from 'antd';
 import './style.less';
 import BuildingCarousel from '../../containers/BuildingCarousel';
 
-const SideBar = (props) => {
+const SideBar = props => {
   return (
     <div className="map-side-bar">
       <h1>Create Your Building</h1>
@@ -16,10 +16,10 @@ const SideBar = (props) => {
               name="name"
               className="name"
               value={props.name}
-              onChange={(event) => {
+              onChange={event => {
                 props.setValue('name', event.target.value);
               }}
-              onBlur={(event) => {
+              onBlur={event => {
                 props.setValue('name', event.target.value);
               }}
             />
@@ -28,10 +28,10 @@ const SideBar = (props) => {
             <Form.Item label="Occupancy" className="half-input">
               <InputNumber
                 size="large"
-                onChange={(value) => {
+                onChange={value => {
                   props.setValue('occupancy', value);
                 }}
-                onBlue={(value) => {
+                onBlue={value => {
                   props.setValue('occupancy', value);
                 }}
               />
@@ -41,10 +41,10 @@ const SideBar = (props) => {
                 size="large"
                 formatter={value => `${value}ft`}
                 parser={value => value.replace('ft', '')}
-                onChange={(value) => {
+                onChange={value => {
                   props.setValue('height', value);
                 }}
-                onBlue={(value) => {
+                onBlue={value => {
                   props.setValue('height', value);
                 }}
               />
@@ -57,10 +57,10 @@ const SideBar = (props) => {
                   size="large"
                   formatter={value => `${value}ft`}
                   parser={value => value.replace('ft', '')}
-                  onChange={(value) => {
+                  onChange={value => {
                     props.setValue('length', value);
                   }}
-                  onBlue={(value) => {
+                  onBlue={value => {
                     props.setValue('length', value);
                   }}
                 />
@@ -70,10 +70,10 @@ const SideBar = (props) => {
                   size="large"
                   formatter={value => `${value}ft`}
                   parser={value => value.replace('ft', '')}
-                  onChange={(value) => {
+                  onChange={value => {
                     props.setValue('width', value);
                   }}
-                  onBlue={(value) => {
+                  onBlue={value => {
                     props.setValue('width', value);
                   }}
                 />
@@ -84,21 +84,23 @@ const SideBar = (props) => {
                 size="large"
                 formatter={value => `${value}sqft`}
                 parser={value => value.replace('sqft', '')}
-                onChange={(value) => {
+                onChange={value => {
                   props.setValue('size', value);
                 }}
-                onBlue={(value) => {
+                onBlue={value => {
                   props.setValue('size', value);
                 }}
               />
             </Form.Item>
           </div>
-          <Button className="button" onClick={props.calculateScore}>
-            Calculate Score
-          </Button>
-          <Button className="button-2" onClick={props.clearBuildings}>
-            Clear Buildings
-          </Button>
+          <div className="horizontal-items">
+            <Button className="button" onClick={props.calculateScore}>
+              Calculate Score
+            </Button>
+            <Button className="button-2" onClick={props.clearBuildings}>
+              Clear Buildings
+            </Button>
+          </div>
         </Form>
         <p className="built">Built with ☕ at LA Hacks 2020</p>
       </div>
