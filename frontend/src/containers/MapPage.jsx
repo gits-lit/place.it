@@ -5,7 +5,7 @@ import Map from '../components/Map';
 import NavBar from '../components/NavBar';
 import SideBar from './SideBar';
 import Score from './Score';
-import Analytics from '../components/Analytics';
+import Analytics from './Analytics';
 import BuildingViewer from '../components/BuildingViewer';
 import { notify } from '../utils';
 import {

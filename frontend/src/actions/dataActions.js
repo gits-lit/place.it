@@ -1,7 +1,7 @@
 import Config from '../config';
 
 import { UPDATE_TOTAL, CLEAR_DATA, ADD_DATA } from './types';
-import { notify, gradeToScore, scoreToGrade } from '../utils';
+import { notify, scoreToGrade } from '../utils';
 
 export const getData = (array) => async dispatch => {
   if (!array || array.length == 0) {
@@ -18,6 +18,14 @@ export const getData = (array) => async dispatch => {
     const actions = array.map(callApi);
     Promise.all(actions).then(function(values) {
       let totalScore = 0;
+      let totalTransitScore = 0;
+      let totalWalkingScore = 0;
+      let trees = 0
+      let carbon = 0;
+      let crimes = 0;
+      let propVal = 0;
+      let tax = 0;
+      let parking = 0;
       for(let i = 0; i < values.length; i++) {
         // Calculate grade and score.
         const value = values[i];
@@ -32,19 +40,37 @@ export const getData = (array) => async dispatch => {
             color: value.params.color
           }
         });
-        totalScore += gradeToScore(value.rating);
+        totalScore += value.rating;
+        totalTransitScore += value.transit.transit.rating;
+        totalWalkingScore += value.transit.walk.rating;
+        trees += value.trees.trees;
+        carbon += value.carbon.carbon;
+        crimes += value.crimes.crimes;
+        propVal += value.house.land_value;
+        tax += value.house.taxes;
+        parking += value.parkingSpaces.spots;
       }
       const score = totalScore / values.length;
       const grade = scoreToGrade(score);
-      console.log(score);
-      console.log(grade);
-
+      const transitScore = totalTransitScore / values.length;
+      const transitGrade = scoreToGrade(transitScore);
+      const walkingScore = totalWalkingScore / values.length;
+      const walkingGrade = scoreToGrade(walkingScore);
       // Update the total values
       dispatch({
         type: UPDATE_TOTAL,
         payload: {
           score: score,
-          grade: grade
+          grade: grade,
+          trees: trees,
+          carbon: carbon,
+          crimes: crimes,
+          num: values.length,
+          propVal: propVal,
+          tax: tax,
+          parking: parking,
+          transitGrade: transitGrade,
+          walkingGrade: walkingGrade
         }
       });
 

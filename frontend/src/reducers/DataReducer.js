@@ -3,6 +3,15 @@ import { ADD_DATA, CLEAR_DATA, UPDATE_TOTAL } from '../actions/types';
 const initialState = {
   grade: '?',
   score: -1,
+  trees: 0,
+  carbon: 0,
+  crimes: 0,
+  num: 0,
+  propVal: 0,
+  tax: 0,
+  parking: 0,
+  transitGrade: '',
+  walkingGrade: '',
   data: []
 };
 
@@ -12,7 +21,16 @@ const DataReducer = (state = initialState, action) => {
       return {
         ...state,
         grade: action.payload.grade,
-        score: action.payload.score
+        score: action.payload.score,
+        trees: action.payload.trees,
+        carbon: action.payload.carbon,
+        crimes: action.payload.crimes,
+        propVal: action.payload.propVal,
+        num: action.payload.num,
+        tax: action.payload.tax,
+        parking: action.payload.parking,
+        transitGrade: action.payload.transitGrade,
+        walkingGrade: action.payload.walkingGrade
       }
     case ADD_DATA:
       const data = {
