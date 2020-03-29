@@ -1,0 +1,8 @@
+name: Place.It
+tasks:
+  start:
+    command: npm run dev
+    baseUrl: http://localhost:3000
+ignoreRequests:
+  - GET /favicon.ico
+  - OPTIONS *

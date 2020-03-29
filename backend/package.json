@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "documentation": "./node_modules/@useoptic/cli/bin/run spec"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -16,6 +17,7 @@
     "spotcrime": "^2.0.1"
   },
   "devDependencies": {
+    "@useoptic/cli": "^7.0.10",
     "nodemon": "^2.0.2"
   }
 }

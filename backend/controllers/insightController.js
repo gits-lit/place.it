@@ -65,7 +65,6 @@ exports.handle_get_insight = async (req, res) => {
         let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
         let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
 
-
         res.status(200);
         res.json({
             rating: "A",
