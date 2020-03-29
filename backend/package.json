@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "./node_modules/@useoptic/cli/bin/run spec && node ./bin/www",
     "dev": "nodemon ./bin/www",
     "documentation": "./node_modules/@useoptic/cli/bin/run spec"
   },

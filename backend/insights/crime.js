@@ -24,4 +24,3 @@ module.exports = async function(lat, lng) {
         })
     })
 }
-async function main() {let output = await module.exports(34.1090526,-118.3508668);console.log(output);} ; main();

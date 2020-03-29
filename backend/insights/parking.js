@@ -2,6 +2,7 @@ const quickRate = require("../utils/rating").quickRateSmaller;
 
 /**
  * Parking Data from https://library.municode.com/ca/los_angeles_county/codes/code_of_ordinances?nodeId=TIT22PLZO_DIV6DEST_CH22.112PA
+ * Office Building, Family, Retail Store, Residential, Commercial, Office/Industrial, Public, Mixed Use, Miscellaneous
  */
 const parkingRates = {
     "Office Building": 
@@ -91,3 +92,4 @@ module.exports = function(type, squareFootage, occupants) {
         }
     }
 }
+
