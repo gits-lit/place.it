@@ -10,6 +10,7 @@ const initialState = {
   propVal: 0,
   tax: 0,
   parking: 0,
+  tips: [],
   transitGrade: '',
   walkingGrade: '',
   data: []
@@ -29,6 +30,7 @@ const DataReducer = (state = initialState, action) => {
         num: action.payload.num,
         tax: action.payload.tax,
         parking: action.payload.parking,
+        tips: action.payload.tips,
         transitGrade: action.payload.transitGrade,
         walkingGrade: action.payload.walkingGrade
       }

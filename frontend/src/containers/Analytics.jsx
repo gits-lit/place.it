@@ -13,6 +13,7 @@ const AnalyticsContainer = props => {
       tax={props.tax}
       crimes={props.crimes}
       parking={props.parking}
+      tips={props.tips}
       transitGrade={props.transitGrade}
       walkingGrade={props.walkingGrade}/>
   );

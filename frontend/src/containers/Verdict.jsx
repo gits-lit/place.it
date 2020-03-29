@@ -5,13 +5,14 @@ import Verdict from '../components/Verdict';
 
 const VerdictContainer = props => {
   return (
-    <Verdict grade={props.grade} score={props.score}/>
+    <Verdict tips={props.tips} grade={props.grade} score={props.score}/>
   )
 };
 
 const mapStateToProps = state => ({
   grade: state.data.grade,
-  score: state.data.score
+  score: state.data.score,
+  tips: state.data.tips
 });
 
 export default connect(

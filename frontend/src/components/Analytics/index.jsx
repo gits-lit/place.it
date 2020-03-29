@@ -29,7 +29,7 @@ const Analytics = props => {
               and are not 100% accurate. More detail can be found here.
             </p>
           </div>
-          <Verdict />
+          <Verdict tips={props.tips} />
         </div>
         <div className="row-2">
           <Statistic

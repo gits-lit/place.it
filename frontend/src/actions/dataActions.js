@@ -26,6 +26,7 @@ export const getData = (array) => async dispatch => {
       let propVal = 0;
       let tax = 0;
       let parking = 0;
+      let tips = [];
       for(let i = 0; i < values.length; i++) {
         // Calculate grade and score.
         const value = values[i];
@@ -58,6 +59,7 @@ export const getData = (array) => async dispatch => {
         propVal += value.house.land_value;
         tax += value.house.taxes;
         parking += value.parkingSpaces.spots;
+        tips = value.tips;
       }
       const score = totalScore / values.length;
       const grade = scoreToGrade(score);
@@ -78,6 +80,7 @@ export const getData = (array) => async dispatch => {
           propVal: propVal,
           tax: tax,
           parking: parking,
+          tips: tips,
           transitGrade: transitGrade,
           walkingGrade: walkingGrade
         }

@@ -12,20 +12,19 @@ const Verdict = props => {
         <div className="horizontal-verdict">
           <div className="horizontal-items">
             <img src={props.score <= 2.7 ? badScore : goodScore} alt="icon" />
-            <h1 style={{
+            <h1
+              style={{
                 color: `${props.score <= 2.7 ? '#E76070' : '#72D66A'}`
-              }}>{props.grade}</h1>
+              }}
+            >
+              {props.grade}
+            </h1>
           </div>
           <div className="tips">
             <ul>
-              <li>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in
-                vulputate lacus,
-              </li>
-              <li>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in
-                vulputate lacus,
-              </li>
+              {props.tips.map(post => (
+                <li>{post}</li>
+              ))}
             </ul>
           </div>
         </div>
