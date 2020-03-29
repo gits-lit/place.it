@@ -1,0 +1,24 @@
+{
+  "name": "place.it",
+  "version": "1.0.0",
+  "description": "Envision the Best Future For Your City",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo Testing Not Implemented",
+    "start" : "cp -rf ./.env backend/ && cd backend && npm install && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gits-lit/place.it.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gits-lit/place.it/issues"
+  },
+  "homepage": "https://github.com/gits-lit/place.it#readme"
+}
