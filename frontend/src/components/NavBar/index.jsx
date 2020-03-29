@@ -19,9 +19,9 @@ const NavBar = props => {
       <div className="modal" onClick={props.calculateScore}>
         <p>analytics</p>
       </div>
-      <NavLink to="/">
-        <p>profile</p>
-      </NavLink>
+      <a href="https://placeitapi.herokuapp.com/">
+        <p>api</p>
+      </a>
     </nav>
   );
 };

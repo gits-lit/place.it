@@ -86,8 +86,7 @@ const callApi = (params) => {
       const response = await fetch(Config.API_URL + '/insight?' +
       `height=${params.height}&lat=${params.lat}&length=${params.length}` +
       `&lng=${params.lng}&occupants=${params.occupancy}&radius=${radius}` +
-      // TODO: CHANGE USE APIS TO 1
-      `&squareFootage=${params.size}&type=${params.type}&useApis=0&width=${params.width}`
+      `&squareFootage=${params.size}&type=${params.type}&useApis=${Config.USE_APIS}&width=${params.width}`
       , {
         method: 'GET',
         headers: {
