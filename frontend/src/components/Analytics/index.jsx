@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Modal } from 'antd';
-import Verdict from '../../components/Verdict';
+import Verdict from '../../containers/Verdict';
 import Statistic from '../../components/Statistic';
 
 import icon from '../../assets/icon.svg';
@@ -10,7 +10,7 @@ import './style.less';
 const Analytics = props => {
   return (
     <Modal width={1100} visible={props.vis} onCancel={props.setVis}>
-      <div className="text-wrapper">
+      <div className="building-wrapper">
         <div className="header">
           <img src={icon} alt="icon" />
           <h1>

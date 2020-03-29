@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import bad_score from '../../assets/bad_score.svg';
+import badScore from '../../assets/bad_score.svg';
+import goodScore from '../../assets/good_score.svg';
 import './style.less';
 
 const Verdict = props => {
@@ -10,8 +11,10 @@ const Verdict = props => {
         <h1 className="title">Final Verdict</h1>
         <div className="horizontal-verdict">
           <div className="horizontal-items">
-            <img src={bad_score} alt="icon" />
-            <h1>C-</h1>
+            <img src={props.score <= 2.7 ? badScore : goodScore} alt="icon" />
+            <h1 style={{
+                color: `${props.score <= 2.7 ? '#E76070' : '#72D66A'}`
+              }}>{props.grade}</h1>
           </div>
           <div className="tips">
             <ul>

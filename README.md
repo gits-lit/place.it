@@ -7,7 +7,7 @@ Sometimes the need to build new structures is unavoidable. At UC Santa Cruz, the
 Also, cities skylines
 
 ## summary
-**place.it** allows Los Angeles's city planners, architects, and everyday citizens understand the impact of the buildings that are 
+**place.it** allows Los Angeles's city planners, architects, and everyday citizens to understand the impact and cost associated with building structures in certain areas through advanced analytics based off Los Angeles data. 
 
 ![](Add an image)
 
