@@ -31,6 +31,7 @@ const BuildingReducer = (state = initialState, action) => {
     case ADD_BUILDINGS:
       const building = {
         type: state.type,
+        color: state.color,
         name: state.name,
         occupancy: state.occupancy,
         length: state.length,

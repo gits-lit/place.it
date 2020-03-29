@@ -1,6 +1,6 @@
 import Config from '../config';
 
-import { UPDATE_TOTAL } from './types';
+import { UPDATE_TOTAL, CLEAR_DATA, ADD_DATA } from './types';
 import { notify, gradeToScore, scoreToGrade } from '../utils';
 
 export const getData = (array) => async dispatch => {
@@ -8,13 +8,27 @@ export const getData = (array) => async dispatch => {
     notify('Error', 'There appears to be no buildings!');
   }
   else {
+    dispatch({
+      type: CLEAR_DATA,
+    });
+
     const actions = array.map(callApi);
     Promise.all(actions).then(function(values) {
-      console.log(values);
-      // Calculate grade and score.
       let totalScore = 0;
       for(let i = 0; i < values.length; i++) {
+        // Calculate grade and score.
         const value = values[i];
+        dispatch({
+          type: ADD_DATA,
+          payload: {
+            type: value.params.type,
+            name: value.params.name,
+            length: value.params.length,
+            width: value.params.width,
+            height: value.params.height,
+            color: value.params.color
+          }
+        });
         totalScore += gradeToScore(value.rating);
       }
       const score = totalScore / values.length;
@@ -58,6 +72,8 @@ const callApi = (params) => {
       if (data.error) throw new Error(data.error.message);
 
       // TODO: ADD TO DATA ARRAY
+      // Store data
+      data.params = params;
       resolve(data);
     } catch (error) {
       notify('Error', error.message);
