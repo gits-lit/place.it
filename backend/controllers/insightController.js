@@ -54,6 +54,7 @@ exports.handle_get_insight = async (req, res) => {
         occupants : req.query.occupants,
         height : req.query.height,
     }
+    const calculateProperty = req.query.calculateProperty;
 
     let errors = []
     for (let param in parameters) {
@@ -98,7 +99,9 @@ exports.handle_get_insight = async (req, res) => {
                     }
                 },
                 houseData: (callback) => {
-                    if (parameters.useApis == 1) {
+                    if (calculateProperty == "no") {
+                        callback(null, dummyData.houseData);
+                    } else if (parameters.useApis == 1) {
                         getHouseData(parameters.lat, parameters.lng).then(result => {
                             callback(null, result);
                         })
@@ -108,11 +111,6 @@ exports.handle_get_insight = async (req, res) => {
                 }
             })
             
-            // let trees = await getTreeData(parameters.lat, parameters.lng, parameters.width, parameters.length);
-            // let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
-            // let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
-            // let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
-
             let {rating, tips} = calculateRating(trees, parkingSpaces, pollution, transit, crimes, houseData);
 
             res.status(200);
