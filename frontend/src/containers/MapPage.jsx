@@ -5,6 +5,7 @@ import Map from '../components/Map';
 import NavBar from '../components/NavBar';
 import SideBar from '../containers/SideBar';
 import Score from '../components/Score';
+import { notify } from '../utils';
 import { placeBuilding, loadBuildings, addBuildings } from '../actions/mapActions';
 
 // TODO Something is being weird and not letting me use props but then again
@@ -25,28 +26,28 @@ const MapPage = (props) => {
     const lat = coords.lat;
     // Yes i know this is shit but my brain is too sleep deprived
     if(color == '') {
-      console.log('No color was selected please use notify function!!');
-    }
-    else if (length == null || length == 0) {
-      console.error('Length is null');
-    }
-    else if (width == null || width == 0) {
-      console.error('Width is null');
-    }
-    else if (height == null || height == 0) {
-      console.error('height is null');
-    }
-    else if (size == null || size == 0) {
-      console.error('size is null');
-    }
-    else if (occupancy == null || occupancy == 0) {
-      console.error('occupancy is null');
+      notify('Error', "NGL, that shouldn't have been possible");
     }
     else if (type == null || type == '') {
-      console.error('type is null');
+      notify('Error', "NGL, that shouldn't have been possible");
     }
     else if (name == null || name == '') {
-      console.error('name is null');
+      notify('Missing Name', 'Fill out the form to place a building on the map!');
+    }
+    else if (occupancy == null || occupancy == 0) {
+      notify('Missing Occupancy', 'Fill out the form to place a building on the map!');
+    }
+    else if (height == null || height == 0) {
+      notify('Missing Height', 'Fill out the form to place a building on the map!');
+    }
+    else if (length == null || length == 0) {
+      notify('Missing Length', 'Fill out the form to place a building on the map!');
+    }
+    else if (width == null || width == 0) {
+      notify('Missing Width', 'Fill out the form to place a building on the map!');
+    }
+    else if (size == null || size == 0) {
+      notify('Missing Size', 'Fill out the form to place a building on the map!');
     }
     else {
       placeBuilding(map, lng, lat, color, length, width, height);
