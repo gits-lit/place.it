@@ -68,13 +68,16 @@ exports.handle_get_insight = async (req, res) => {
     } else {
         
         try {
-            let trees = await getTreeData(parameters.lat, parameters.lng, parameters.width, parameters.length);
+
             let parkingSpaces = getParkingData(parameters.type, parameters.squareFootage, parameters.occupants);
             let pollution = getPollution(parameters.squareFootage);
+
+            let trees = await getTreeData(parameters.lat, parameters.lng, parameters.width, parameters.length);
             let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
             let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
             let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
-            let rating = calculateRating(trees, parkingSpaces, pollution, transit, crimes, houseData);
+            
+            let {rating, tips} = calculateRating(trees, parkingSpaces, pollution, transit, crimes, houseData);
 
             res.status(200);
             res.json({
@@ -85,7 +88,8 @@ exports.handle_get_insight = async (req, res) => {
                 parkingSpaces: parkingSpaces,
                 crimes: crimes,
                 house: houseData,
-                dummyData: parameters.useApis != 1
+                dummyData: parameters.useApis != 1,
+                tips: tips
             });
         } catch(err) {
             console.log(err)
