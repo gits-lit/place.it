@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import Map from '../components/Map';
 import NavBar from '../components/NavBar';
-import SideBar from '../containers/SideBar';
-import Score from '../components/Score';
+import SideBar from './SideBar';
+import Score from './Score';
 import Analytics from '../components/Analytics';
 import { notify } from '../utils';
 import {

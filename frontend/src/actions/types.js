@@ -3,3 +3,4 @@ export const CLEAR_BUILDINGS = 'CLEAR_BUILDINGS';
 export const CAROUSEL_UPDATE = 'CAROUSEL_UPDATE';
 export const FORM_UPDATE = 'FORM_UPDATE';
 export const UPDATE_COORDS = 'UPDATE_COORDS';
+export const UPDATE_TOTAL = 'UPDATE_TOTAL';

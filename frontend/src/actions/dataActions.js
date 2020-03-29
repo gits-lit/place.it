@@ -1,5 +1,6 @@
 import Config from '../config';
 
+import { UPDATE_TOTAL } from './types';
 import { notify, gradeToScore, scoreToGrade } from '../utils';
 
 export const getData = (array) => async dispatch => {
@@ -20,6 +21,15 @@ export const getData = (array) => async dispatch => {
       const grade = scoreToGrade(score);
       console.log(score);
       console.log(grade);
+
+      // Update the total values
+      dispatch({
+        type: UPDATE_TOTAL,
+        payload: {
+          score: score,
+          grade: grade
+        }
+      });
 
     });
   }
