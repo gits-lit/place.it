@@ -12,7 +12,6 @@ const Score = props => {
           <img src={bad_score} alt="icon" />
           <h1>C-</h1>
         </div>
-        <h2>-232 Place Score</h2>
       </div>
     </div>
   );
