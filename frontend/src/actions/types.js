@@ -1,4 +1,8 @@
 export const ADD_BUILDINGS = 'ADD_BUILDINGS';
+export const ADD_DATA = 'ADD_DATA';
 export const CLEAR_BUILDINGS = 'CLEAR_BUILDINGS';
+export const CLEAR_DATA = 'CLEAR_DATA';
 export const CAROUSEL_UPDATE = 'CAROUSEL_UPDATE';
 export const FORM_UPDATE = 'FORM_UPDATE';
+export const UPDATE_COORDS = 'UPDATE_COORDS';
+export const UPDATE_TOTAL = 'UPDATE_TOTAL';

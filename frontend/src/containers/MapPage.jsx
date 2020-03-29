@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import Map from '../components/Map';
 import NavBar from '../components/NavBar';
-import SideBar from '../containers/SideBar';
-import Score from '../components/Score';
+import SideBar from './SideBar';
+import Score from './Score';
 import Analytics from '../components/Analytics';
 import { notify } from '../utils';
 import {
@@ -34,9 +34,13 @@ const MapPage = props => {
     // api shit here idk lmao
   }
 
-  const addBuildings = () => {
-    props.addBuildings();
-  };
+  const addBuildings = (lat, lng) => {
+    props.addBuildings(lat, lng);
+  }
+
+  const placeBuilding = (map, lng, lat, color, length, width, height) => {
+    props.placeBuilding(map, lng, lat, color, length, width, height);
+  }
 
   const mapClick = (map, event) => {
     const coords = event.lngLat;
@@ -79,7 +83,7 @@ const MapPage = props => {
       );
     } else {
       placeBuilding(map, lng, lat, color, length, width, height);
-      addBuildings();
+      addBuildings(lat, lng);
     }
   };
 
@@ -117,6 +121,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addBuildings, loadBuildings })(
-  MapPage
-);
+export default connect(
+  mapStateToProps,
+  { addBuildings, loadBuildings, placeBuilding }
+)(MapPage);

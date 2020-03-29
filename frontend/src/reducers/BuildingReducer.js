@@ -1,4 +1,4 @@
-import { ADD_BUILDINGS, ADD_MAP, CAROUSEL_UPDATE, CLEAR_BUILDINGS, FORM_UPDATE } from '../actions/types';
+import { ADD_BUILDINGS, ADD_MAP, CAROUSEL_UPDATE, CLEAR_BUILDINGS, FORM_UPDATE, UPDATE_COORDS } from '../actions/types';
 
 const initialState = {
   type: '',
@@ -10,6 +10,8 @@ const initialState = {
   height: 0,
   size: 0,
   buildings: [],
+  lat: '',
+  lng: '',
   map: null
 };
 
@@ -19,7 +21,7 @@ const BuildingReducer = (state = initialState, action) => {
       return {
         ...state,
         type: action.payload.type,
-        color: action.payload.color,
+        color: action.payload.color
       };
     case FORM_UPDATE:
       return {
@@ -29,12 +31,15 @@ const BuildingReducer = (state = initialState, action) => {
     case ADD_BUILDINGS:
       const building = {
         type: state.type,
+        color: state.color,
         name: state.name,
         occupancy: state.occupancy,
         length: state.length,
         width: state.width,
         height: state.height,
-        size: state.size
+        size: state.size,
+        lat: action.payload.lat,
+        lng: action.payload.lng
       }
       return {
         ...state,
@@ -44,6 +49,12 @@ const BuildingReducer = (state = initialState, action) => {
       return {
         ...state,
         buildings: []
+      }
+    case UPDATE_COORDS:
+      return {
+        ...state,
+        lat: action.payload.lat,
+        lng: action.payload.lng
       }
   default:
       return state;
