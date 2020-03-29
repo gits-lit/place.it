@@ -20,6 +20,10 @@ const MapPage = (props) => {
     props.addBuildings();
   }
 
+  const placeBuilding = (map, lng, lat, color, length, width, height) => {
+    props.placeBuilding(map, lng, lat, color, length, width, height);
+  }
+
   const mapClick = (map, event) => {
     const coords = event.lngLat;
     const lng = coords.lng;
@@ -51,7 +55,7 @@ const MapPage = (props) => {
     }
     else {
       placeBuilding(map, lng, lat, color, length, width, height);
-      addBuildings();
+      addBuildings(lat, lng);
     }
   }
 
@@ -90,5 +94,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addBuildings, loadBuildings }
+  { addBuildings, loadBuildings, placeBuilding }
 )(MapPage);

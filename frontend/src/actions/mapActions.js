@@ -2,12 +2,12 @@ import { MercatorCoordinate } from 'mapbox-gl';
 import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
-import { ADD_BUILDINGS, CLEAR_BUILDINGS } from './types';
+import { ADD_BUILDINGS, CLEAR_BUILDINGS, UPDATE_COORDS } from './types';
 import { notify } from '../utils';
 
 let allLayers = []
 
-export const placeBuilding = (map, lng, lat, color, length, width, height) => {
+export const placeBuilding = (map, lng, lat, color, length, width, height) => async dispatch => {
 
   // parameters to ensure the model is georeferenced correctly on the map
   const modelOrigin = [lng, lat];
@@ -143,6 +143,13 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
     allLayers.push(customLayer.id);
     console.log(allLayers);
     window.map = map;
+    dispatch({
+      type: UPDATE_COORDS,
+      payload: {
+        lat: lat,
+        lng: lng
+      }
+    });
   }
   catch (error) {
     // TODO: Notify
@@ -187,8 +194,12 @@ export const clearBuildings = () => async dispatch => {
   });
 }
 
-export const addBuildings = () => async dispatch => {
+export const addBuildings = (lat, lng) => async dispatch => {
   dispatch({
     type: ADD_BUILDINGS,
+    payload: {
+      lat: lat,
+      lng: lng
+    }
   });
 }

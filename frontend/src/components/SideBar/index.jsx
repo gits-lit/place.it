@@ -93,7 +93,7 @@ const SideBar = (props) => {
               />
             </Form.Item>
           </div>
-          <Button className="button">
+          <Button className="button" onClick={props.calculateScore}>
             Calculate Score
           </Button>
           <Button className="button-2" onClick={props.clearBuildings}>
