@@ -73,5 +73,52 @@
         "dummyData": false
       }
     }
+  },
+  {
+    "id": "7a3cabe7-dbb9-4fa3-8115-91123382cce9",
+    "host": "localhost",
+    "request": {
+      "method": "GET",
+      "url": "/insight",
+      "headers": {
+        "host": "localhost:3300",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36",
+        "sec-fetch-dest": "document",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.9",
+        "cookie": "intercom-id-votuin5e=61d7bd77-4805-44d8-819a-25e77e14dd2f; intercom-session-votuin5e=; mp_mixpanel__c=41; mp_78a42ccba0e9a55de00c30b454c5da8e_mixpanel=%7B%22distinct_id%22%3A%20%22170fc272e07947-07eb68c84dfbe-396a7f06-1ea000-170fc272e08bbb%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%7D",
+        "if-none-match": "W/\"2a9-wpbjZ+uEYs4REt91aZAQN8TxIT0\""
+      },
+      "cookies": {},
+      "queryString": "lat=34.0791772265245&lng=-118.406784658529&radius=0.1&type=Family&squareFootage=2600&occupants=10&useApis=1&width=50.990195136&length=50.990195136&height=50.990195136",
+      "queryParameters": {
+        "lat": "34.0791772265245",
+        "lng": "-118.406784658529",
+        "radius": "0.1",
+        "type": "Family",
+        "squareFootage": "2600",
+        "occupants": "10",
+        "useApis": "1",
+        "width": "50.990195136",
+        "length": "50.990195136",
+        "height": "50.990195136"
+      }
+    },
+    "response": {
+      "statusCode": 304,
+      "headers": {
+        "x-powered-by": "Express",
+        "etag": "W/\"2a9-wpbjZ+uEYs4REt91aZAQN8TxIT0\"",
+        "date": "Sun, 29 Mar 2020 07:35:28 GMT",
+        "connection": "keep-alive"
+      }
+    }
   }
 ]

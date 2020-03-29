@@ -4,28 +4,37 @@ const getParkingData = require("../insights/parking");
 const getCrimes = require("../insights/crime");
 const getHouseData = require("../insights/house");
 const getPollution = require("../insights/pollution");
+const calculateRating = require("../insights/rating");
 
 const dummyData = {
-    transit: {
-        walk: {
-        score: 44,
-        description: "Car-Dependent"
+    "transit": {
+        "rating": 2,
+        "walk": {
+          "score": 51,
+          "description": "Somewhat Walkable",
+          "rating": 2
         },
-        transit: {
-        score: 56,
-        description: "Good Transit",
-        summary: "19 nearby routes: 19 bus, 0 rail, 0 other"
+        "transit": {
+          "score": 55,
+          "description": "Good Transit",
+          "summary": "5 nearby routes: 5 bus, 0 rail, 0 other",
+          "rating": 2
         },
-        bike: {
-        score: 46,
-        description: "Somewhat Bikeable"
+        "bike": {
+          "score": 41,
+          "description": "Somewhat Bikeable",
+          "rating": 2
         },
-        detailLink: "https://www.walkscore.com/score/loc/lat=34.068972/lng=-118.456386/?utm_source=ronakshah.net&utm_medium=ws_api&utm_campaign=ws_api"
+        "detailLink": "https://www.walkscore.com/score/loc/lat=34.0791772265245/lng=-118.406784658529/?utm_source=ronakshah.net&utm_medium=ws_api&utm_campaign=ws_api"
+      },
+    crimes: {
+        crimes: 4,
+        rating: 4
     },
-    crimes: 4,
     houseData: {
-        taxes: 3273,
-        land_value: 87672
+        taxes: 57614,
+        land_value: 3876115,
+        rating: 4
     }
 }
 
@@ -66,10 +75,11 @@ exports.handle_get_insight = async (req, res) => {
             let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
             let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
             let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
+            let rating = calculateRating(trees, parkingSpaces, pollution, transit, crimes, houseData);
 
             res.status(200);
             res.json({
-                rating: "A",
+                rating: rating,
                 trees: trees,
                 carbon: pollution,
                 transit: transit,

@@ -1,5 +1,8 @@
+const quickRate = require("../utils/rating").quickRateSmaller;
+
 /**
  * Estimates the number of trees in a certain area
+ * Data from http://lahubcom.maps.arcgis.com/home/item.html?id=3ac3c0dc510a4581bb7f2c879f15ede5
  */
 module.exports = async function(lat, lng, width, length) {
     return new Promise(async (resolve, reject) => {
@@ -20,9 +23,15 @@ module.exports = async function(lat, lng, width, length) {
         try {
             let trees = await getTreeData;
             trees = parseInt(trees.toString());
-            resolve(trees);
+            resolve({
+                trees: trees,
+                rating: quickRate(trees, 4, 17, 30, 67)
+            });
         } catch (err) {
-            resolve(0);
+            resolve({
+                trees: -1,
+                rating: -1
+            });
             console.log("Something went wrong");
             console.log(err);
         }
