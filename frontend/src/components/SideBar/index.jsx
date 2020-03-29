@@ -6,7 +6,7 @@ import BuildingCarousel from '../../containers/BuildingCarousel';
 
 const SideBar = props => {
   return (
-    <div className="map-side-bar">
+    <div className="map-side-bar" spellCheck="false">
       <h1>Create Your Building</h1>
       <BuildingCarousel />
       <div className="form-wrapper">
@@ -24,7 +24,7 @@ const SideBar = props => {
               }}
             />
           </Form.Item>
-          <div className="horizontal-items" spellCheck="false">
+          <div className="horizontal-items">
             <Form.Item label="Occupancy" className="half-input">
               <InputNumber
                 size="large"
@@ -52,7 +52,7 @@ const SideBar = props => {
           </div>
           <div className="horizontal-items">
             <div className="radius-wrapper">
-              <Form.Item label="Radius" className="quarter-input">
+              <Form.Item label="Width" className="quarter-input">
                 <InputNumber
                   size="large"
                   formatter={value => `${value}ft`}
@@ -65,7 +65,7 @@ const SideBar = props => {
                   }}
                 />
               </Form.Item>
-              <Form.Item label="⠀" className="quarter-input">
+              <Form.Item label="Length" className="quarter-input">
                 <InputNumber
                   size="large"
                   formatter={value => `${value}ft`}

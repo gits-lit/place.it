@@ -27,7 +27,7 @@ let width,
 
 const MapPage = props => {
 
-  const [vis, setVis] = useState(false);
+  const [vis, setVis] = useState(true);
 
   const calculateScore = () => {
     setVis(true);
