@@ -21,13 +21,9 @@ const BuildingCarouselContainer = props => {
     setType(0);
   }, []);
 
-  const onChange = (index) => {
-    setType(index);
-  }
-
   return (
     <BuildingCarousel
-      onChange={onChange}
+      onChange={setType}
       onClick={props.onClick}
       buildings={buildings}
       />

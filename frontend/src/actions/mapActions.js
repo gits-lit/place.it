@@ -2,6 +2,8 @@ import { MercatorCoordinate } from 'mapbox-gl';
 import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
+import { ADD_BUILDINGS } from './types';
+
 export const placeBuilding = (map, lng, lat, color, length, width, height) => {
 
   // parameters to ensure the model is georeferenced correctly on the map
@@ -27,8 +29,19 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
     scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
   };
 
+  // Insert the layer beneath any symbol layer.
+  var layers = map.getStyle().layers;
+
+  var labelLayerId;
+  for (var i = 0; i < layers.length; i++) {
+    if (layers[i].type === 'custom') {
+    labelLayerId = layers[i].id;
+    break;
+    }
+  }
+
   var customLayer = {
-    id: 'building',
+    id: lat.toString() + lng.toString(),
     type: 'custom',
     renderingMode: '3d',
     'fill-extrusion-height': [
@@ -122,8 +135,13 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
   }
   };
 
-  map.removeLayer('building');
-  map.addLayer(customLayer, 'waterway-label');
+  try {
+    map.addLayer(customLayer, labelLayerId);
+  }
+  catch (error) {
+    // TODO: Notify
+    console.error('already exists no allow');
+  }
 }
 
 export const loadBuildings = (map) => {
@@ -146,5 +164,15 @@ export const loadBuildings = (map) => {
           },
           'fill-extrusion-opacity': .5
       }
+  });
+}
+
+export const clearBuildings = (map) => {
+
+}
+
+export const addBuildings = () => async dispatch => {
+  dispatch({
+    type: ADD_BUILDINGS,
   });
 }
