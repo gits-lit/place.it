@@ -39,7 +39,16 @@ const DataReducer = (state = initialState, action) => {
         length: action.payload.length,
         width: action.payload.width,
         height: action.payload.height,
-        color: action.payload.color
+        color: action.payload.color,
+        score: action.payload.score,
+        treeScore: action.payload.treeScore,
+        carbonScore: action.payload.carbonScore,
+        transitScore: action.payload.transitScore,
+        parkingScore: action.payload.parkingScore,
+        crimeScore: action.payload.crimeScore,
+        houseScore: action.payload.houseScore,
+        lat: action.payload.lat,
+        lng: action.payload.lng
       }
 
       return {

@@ -37,7 +37,16 @@ export const getData = (array) => async dispatch => {
             length: value.params.length,
             width: value.params.width,
             height: value.params.height,
-            color: value.params.color
+            color: value.params.color,
+            score: value.rating,
+            lat: value.params.lat,
+            lng: value.params.lng,
+            treeScore: value.trees.rating,
+            carbonScore: value.carbon.rating,
+            transitScore: value.transit.rating,
+            parkingScore: value.parkingSpaces.rating,
+            crimeScore: value.crimes.rating,
+            houseScore: value.house.rating
           }
         });
         totalScore += value.rating;

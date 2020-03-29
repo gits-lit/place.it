@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 import SideBar from './SideBar';
 import Score from './Score';
 import Analytics from './Analytics';
-import BuildingViewer from '../components/BuildingViewer';
+import BuildingViewer from './BuildingViewer';
 import { notify } from '../utils';
 import {
   placeBuilding,

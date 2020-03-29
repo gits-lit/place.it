@@ -1,0 +1,50 @@
+.building-screen {
+  height: 60vh;
+  padding: 0 50px;
+  position: relative;
+
+  h1 {
+    font-weight: bold;
+    font-size: 2rem !important;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+
+  .overall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: calc(40% - 50px);
+    height: 30%;
+    right: 50px;
+    bottom: 50px;
+
+    img {
+      margin-left: 20px;
+      margin-right: 60px;
+    }
+
+    b {
+      font-size: 3.8rem;
+    }
+  }
+
+  .model {
+    position: absolute;
+    width: calc(40% - 50px);
+    right: 50px;
+    top: 0;
+    z-index: 100000;
+    height: calc(100% - 100px);
+  }
+
+  canvas {
+    width: 100% !important;
+    height: 100%!important;
+  }
+}
