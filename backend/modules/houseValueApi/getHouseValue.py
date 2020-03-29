@@ -56,7 +56,11 @@ if 'formatted_address' in results:
 
         r = requests.get(url = "https://apis.estated.com/v4/property", params = data)
         response = r.json()
+
         response = response['data']
+        if response is None:
+                print("No Property Found")
+                sys.exit(1)
         if 'taxes' in response:
                 amt = response['taxes'][0]['amount']
                 jsonResponse['taxes'] = amt
