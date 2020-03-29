@@ -116,7 +116,7 @@ const callApi = (params) => {
       data.params = params;
       resolve(data);
     } catch (error) {
-      notify('Error', error.message);
+      notify('Error', "Server is down because we don't have money to deploy it");
       reject(error);
     }
   });

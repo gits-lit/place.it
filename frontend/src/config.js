@@ -1,6 +1,6 @@
-let apiurl = '';
+let apiurl = 'https://a1cc45d7.ngrok.io';
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  apiurl = 'http://localhost:3000';
+  apiurl = 'https://a1cc45d7.ngrok.io';
 }
 
 export default {

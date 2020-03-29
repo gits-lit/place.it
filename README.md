@@ -24,12 +24,9 @@ We calculate an overall rating based on 6 key aspects of a building — its esti
 
 #### Estimated Carbon Emissions
 
-This was calculated through a linear regression machine learning model, as @Nir will explain in depth.
+The biggest challenge we had was acquiring the best feature variables for generating a model using [SciKit](https://scikit-learn.org/stable/) to predict Carbon Emissions (tons of CO2) from square footage and type of building. Just using the raw data, we were getting terrible linear fits, with an R^2 value of 0. We tried predicting using different columns provided by [Los Angeles](https://data.lacity.org/A-Livable-and-Sustainable-City/Existing-Buildings-Energy-Water-Efficiency-EBEWE-P/9yda-i4ya), including energy usage and year built, but nothing was working.
 
-![Juypter Notebook](picture of a jupyter notebook or something)
-
-___Machine learning was done on Jupyter Notebooks using scikit-learn.___
-
+However, using data visualization tools such as matplotlib and [radiant](https://radiant-rstats.github.io/docs/), we were able to deduce that there are a few outliers skewing the data. After removing those our model was able to predict the Carbon Emissions with an R^2 value of 0.7. We use this model to score potential building placements in terms of pollution generated.
 
 #### Land Valuation
 
