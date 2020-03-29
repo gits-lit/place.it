@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import Score from '../components/Score';
+import Verdict from '../components/Verdict';
 
-const ScoreContainer = props => {
+const VerdictContainer = props => {
   return (
-    <Score grade={props.grade} score={props.score}/>
+    <Verdict grade={props.grade} score={props.score}/>
   )
 };
 
@@ -17,4 +17,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { }
-)(ScoreContainer);
+)(VerdictContainer);

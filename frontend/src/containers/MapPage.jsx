@@ -5,14 +5,19 @@ import Map from '../components/Map';
 import NavBar from '../components/NavBar';
 import SideBar from './SideBar';
 import Score from './Score';
+<<<<<<< HEAD
 import Analytics from '../components/Analytics';
 import BuildingViewer from '../components/BuildingViewer';
+=======
+import Analytics from './Analytics';
+>>>>>>> a9f931a65aeb9e8628e2365d2fd3adf894f90389
 import { notify } from '../utils';
 import {
   placeBuilding,
   loadBuildings,
   addBuildings
 } from '../actions/mapActions';
+import { getData } from '../actions/dataActions';
 
 // TODO Something is being weird and not letting me use props but then again
 // it's 6AM  and I'm so sleepy. See if I can fix this later but in any case it
@@ -25,16 +30,20 @@ let width,
   length,
   size,
   occupancy = 0;
+let buildings = [];
 
 const MapPage = props => {
 
   const [vis, setVis] = useState(false);
+<<<<<<< HEAD
   const [vis1, setVis1] = useState(false);
 
 
+=======
+>>>>>>> a9f931a65aeb9e8628e2365d2fd3adf894f90389
   const calculateScore = () => {
     setVis(true);
-    // api shit here idk lmao
+    props.getData(buildings);
   }
 
   const addBuildings = (lat, lng) => {
@@ -116,16 +125,18 @@ const mapStateToProps = state => {
   name = state.building.name;
   occupancy = state.building.occupancy;
   size = state.building.size;
+  buildings = state.building.buildings;
   return {
     color: state.building.color,
     height: state.building.height,
     length: state.building.length,
     width: state.building.width,
-    map: state.building.map
+    map: state.building.map,
+    buildings: state.building.buildings
   };
 };
 
 export default connect(
   mapStateToProps,
-  { addBuildings, loadBuildings, placeBuilding }
+  { addBuildings, loadBuildings, placeBuilding, getData }
 )(MapPage);

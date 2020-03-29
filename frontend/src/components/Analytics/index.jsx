@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Modal } from 'antd';
-import Verdict from '../../components/Verdict';
+import Verdict from '../../containers/Verdict';
 import Statistic from '../../components/Statistic';
 
 import icon from '../../assets/icon.svg';

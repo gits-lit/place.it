@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import SideBar from '../components/SideBar';
 import { updateBuildingForm } from '../actions/buildingActions';
 import { clearBuildings } from '../actions/mapActions';
-import { getData } from '../actions/dataActions';
 
 const SideBarForm = props => {
 
@@ -16,15 +15,11 @@ const SideBarForm = props => {
     props.clearBuildings(window.map);
   }
 
-  const calculateScore = () => {
-    props.getData(props.buildings);
-  }
-
   return (
     <SideBar
       setValue={setValue}
       clearBuildings={clearBuildings}
-      calculateScore={calculateScore}
+      calculateScore={props.calculateScore}
     />
   );
 };
@@ -42,5 +37,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { updateBuildingForm, clearBuildings, getData }
+  { updateBuildingForm, clearBuildings }
 )(SideBarForm);

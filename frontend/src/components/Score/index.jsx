@@ -10,7 +10,6 @@ let image = logo;
 let color = '#000000';
 const Score = props => {
   useEffect(() => {
-    console.log('here');
     if (props.score <= 2.7) {
       image = badScore;
       color = '#E76070';
@@ -25,9 +24,9 @@ const Score = props => {
       <div className="score-wrapper">
         <h1 className="title">Previous Place Score</h1>
         <div className="horizontal-items .fade-in">
-          <img src={image} alt="icon" className=".fade-in"/>
+          <img src={props.score <= 2.7 ? badScore : goodScore} alt="icon" className=".fade-in"/>
           <h1 className=".fade-in" style={{
-              color: `${color}`
+              color: `${props.score <= 2.7 ? '#E76070' : '#72D66A'}`
             }}>{props.grade}</h1>
         </div>
       </div>
