@@ -6,7 +6,7 @@ module.exports = async function(lat, lng, width, length) {
         let getTreeData = new Promise((success, nosuccess) => {
 
             const { spawn } = require('child_process');
-            const pyprog = spawn('python', ['./modules/treeApi/treeFind.py', lat, lng, width, length]);
+            const pyprog = spawn('python', ['./modules/treeApi/treeFind.py', lat, lng, length, width]);
         
             pyprog.stdout.on('data', function(data) {
                 success(data);
