@@ -4,17 +4,17 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import './style.less';
 
-const NavBar = (props) => {
+const NavBar = props => {
   return (
     <nav className="map-nav-bar">
       <NavLink to="/">
         <p>home</p>
       </NavLink>
+      <div className="modal" onClick={props.viewBuildings}>
+        <p>buildings</p>
+      </div>
       <NavLink to="/">
-        <p>projects</p>
-      </NavLink>
-      <NavLink to="/">
-        <img src={logo} />
+        <img src={logo} alt="logo" />
       </NavLink>
       <div className="modal" onClick={props.calculateScore}>
         <p>analytics</p>
