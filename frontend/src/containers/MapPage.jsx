@@ -5,12 +5,8 @@ import Map from '../components/Map';
 import NavBar from '../components/NavBar';
 import SideBar from './SideBar';
 import Score from './Score';
-<<<<<<< HEAD
 import Analytics from '../components/Analytics';
 import BuildingViewer from '../components/BuildingViewer';
-=======
-import Analytics from './Analytics';
->>>>>>> a9f931a65aeb9e8628e2365d2fd3adf894f90389
 import { notify } from '../utils';
 import {
   placeBuilding,
@@ -35,12 +31,7 @@ let buildings = [];
 const MapPage = props => {
 
   const [vis, setVis] = useState(false);
-<<<<<<< HEAD
   const [vis1, setVis1] = useState(false);
-
-
-=======
->>>>>>> a9f931a65aeb9e8628e2365d2fd3adf894f90389
   const calculateScore = () => {
     props.getData(buildings).then(() => {
       setVis(true);

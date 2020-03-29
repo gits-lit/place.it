@@ -9,7 +9,7 @@ import './style.less';
 const BuildingViewer = props => {
   return (
     <Modal width={700} visible={props.vis} onCancel={props.setVis}>
-      <div className="building-wrapper">
+      <div className="building-viewer">
         <div className="header">
           <img src={icon} alt="icon" />
           <h1>
