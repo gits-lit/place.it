@@ -33,7 +33,8 @@ ___Machine learning was done on Jupyter Notebooks using scikit-learn.___
 
 #### Land Valuation
 
-This was calculated using the Estated API, as @Catherine will explain the technical challenges involved in this.
+This was calculated using the Estated API, which takes in a physical address which we received by reverse geocoding latitude and longitude points using the Google Maps API. The Estated API will return the current assessed land value and the amount of tax on that property in dollars, which is useful in determining if the benefits of building outweights the cons of removing natural resources.
+
 
 #### Parking Requirements
 
@@ -45,7 +46,7 @@ When placing a building, it's good to know the safety of the area you're buildin
 
 #### Impact on Trees
 
-Trees are incredibly important — [Support Planting Trees!](https://teamtrees.org) — and as such it is important to note how many trees your proposed building will destroy. We hope by providing this number, the user can pledge to replant the trees or consider a more eco-friendly location. We determined this rating by @Catherine fill this out ty.
+Trees are incredibly important — [Support Planting Trees!](https://teamtrees.org) — and as such it is important to note how many trees your proposed building will destroy. We hope by providing this number, the user can pledge to replant the trees or consider a more eco-friendly location. We determined this rating by using the tree dataset provided by Los Angeles county. Given a point of interest where someone would want to build over, we would identify how many trees exist within a certain length and width of that point based off our tree dataset. 
 
 #### Transit Score
 
