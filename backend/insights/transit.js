@@ -1,6 +1,9 @@
 const request = require("request");
+const quickRate = require("../utils/rating").quickRateLarger;
+
 /**
  * Calculates the transit score for a specific area
+ * Data from https://www.walkscore.com/
  */
 module.exports = async function(lat, lng) {
     return new Promise(async (resolve, reject) => {
@@ -24,14 +27,17 @@ module.exports = async function(lat, lng) {
                 body = JSON.parse(body);
                 
                 if (body.status == 1) {
-                    body.transit.rating = (body.transit.score > 100) ? "amazing" : (body.transit.score > 50) ? "okay" : "bad"
-                    body.bike.rating = (body.bike.score > 100) ? "amazing" : (body.bike.score > 50) ? "okay" : "bad"
-                
+                    body.transit.rating = quickRate(body.transit.score, 80, 60, 40, 20);
+                    body.bike.rating = quickRate(body.bike.score, 80, 60, 40, 20);
+                    const walkRating = quickRate(body.walkscore, 80, 60, 40, 20);
+                    const avgRating = (body.transit.rating + body.bike.rating + walkRating) / 3;
+
                     resolve({
+                        rating: avgRating,
                         walk: {
                             score: body.walkscore,
                             description: body.description,
-                            rating: (body.walkscore > 100) ? "amazing" : (body.walkscore > 50) ? "okay" : "bad"
+                            rating: walkRating
                         },
                         transit: body.transit,
                         bike: body.bike,
@@ -39,7 +45,8 @@ module.exports = async function(lat, lng) {
                     })
                 } else {
                     resolve({
-                        loading: "we're still loading data for this coordinate. please try again in 30 seconds."
+                        loading: "we're still loading data for this coordinate. please try again in 30 seconds.",
+                        rating: -1
                     })
                 }
             }

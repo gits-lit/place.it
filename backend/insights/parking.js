@@ -1,39 +1,80 @@
+const quickRate = require("../utils/rating").quickRateSmaller;
+
+/**
+ * Parking Data from https://library.municode.com/ca/los_angeles_county/codes/code_of_ordinances?nodeId=TIT22PLZO_DIV6DEST_CH22.112PA
+ */
 const parkingRates = {
     "Office Building": 
         (squareFootage) => {
-            return squareFootage * (1/400);
+            let spots = squareFootage * (1/400);
+            return {
+                spots: spots,
+                rating: quickRate(spots, 5, 10, 15, 20)
+            }
         },
     "Family": 
-        (squareFootage) => {
-            return 2;
+        () => {
+            let spots = 2;
+            return {
+                spots: spots,
+                rating: 3
+            }
         },
     "Retail Store": 
         (squareFootage) => {
-            return squareFootage * (1/250);
+            let spots = squareFootage * (1/250);
+            return {
+                spots: spots,
+                rating: quickRate(spots, 10, 20, 30, 40)
+            }
         },
     "Residential": 
         (squareFootage, occupants) => {
-            return (occupants/3) * 2;
+            let spots = (occupants/3) * 2;
+            return {
+                spots: spots,
+                rating: quickRate(spots, 2, 3, 4, 5)
+            }
         },
     "Commercial": 
         (squareFootage) => {
-            return squareFootage * (1/100);
+            let spots = squareFootage * (1/100);
+            return {
+                spots: spots,
+                rating: quickRate(spots, 25, 50, 75, 100)
+            }
         },
     "Office/Industrial": 
         (squareFootage) => {
-            return squareFootage * (1/500);
+            let spots = squareFootage * (1/500);
+            return {
+                spots: spots,
+                rating: quickRate(spots, 4, 8, 12, 16)
+            }
         },
     "Public": 
         (squareFootage) => {
-            return squareFootage * (1/250);
+            let spots = squareFootage * (1/250);
+            return {
+                spots: spots,
+                rating: quickRate(spots, 10, 20, 30, 40)
+            }
         },
     "Mixed Use": 
         (squareFootage) => {
-            return squareFootage * (1/100);
+            let spots = squareFootage * (1/100);
+            return {
+                spots: spots,
+                rating: quickRate(spots, 25, 50, 75, 100)
+            }
         },
     "Miscellaneous": 
         (squareFootage) => {
-            return squareFootage * (1/200);
+            let spots = squareFootage * (1/200);
+            return {
+                spots: spots,
+                rating: quickRate(spots, 10, 20, 30, 40)
+            }
         }
 }
 
@@ -44,6 +85,9 @@ module.exports = function(type, squareFootage, occupants) {
     if (type in parkingRates) {
         return parkingRates[type](squareFootage, occupants);
     } else {
-        return "Invalid Type";
+        return {
+            spots: "Invalid Type",
+            rating: -1
+        }
     }
 }
