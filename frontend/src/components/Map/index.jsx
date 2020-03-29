@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 const Map = ReactMapboxGl({
@@ -7,6 +7,9 @@ const Map = ReactMapboxGl({
 });
 
 const MapComponent = (props) => {
+  useEffect(() => {
+    console.log('hiiii');
+  });
   return (
     <Map
       antialias={true}
@@ -17,6 +20,9 @@ const MapComponent = (props) => {
         right: '0'
       }}
       center={[-118.2437, 34.0522]}
+      flyToOptions={{
+        speed: 0
+      }}
       onClick={props.mapClick}
       onStyleLoad={props.mapLoad}
       pitch = {[60]}
