@@ -1,8 +1,9 @@
-name: Place.It
+name: Place.it Insights API
 tasks:
   start:
-    command: npm run dev
-    baseUrl: http://localhost:3000
+    command: npm start
+    baseUrl: 'http://localhost:3000'
 ignoreRequests:
   - GET /favicon.ico
   - OPTIONS *
+  - GET /

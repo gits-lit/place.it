@@ -1,0 +1,93 @@
+[
+  {
+    "id": "1087174d-e09f-4bfc-ae56-be5913b54291",
+    "host": "localhost",
+    "request": {
+      "method": "GET",
+      "url": "/insight",
+      "headers": {
+        "host": "localhost:3300",
+        "connection": "keep-alive",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36",
+        "sec-fetch-dest": "document",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.9",
+        "cookie": "intercom-id-votuin5e=61d7bd77-4805-44d8-819a-25e77e14dd2f; intercom-session-votuin5e=; mp_78a42ccba0e9a55de00c30b454c5da8e_mixpanel=%7B%22distinct_id%22%3A%20%22170fc272e07947-07eb68c84dfbe-396a7f06-1ea000-170fc272e08bbb%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%7D; mp_mixpanel__c=16"
+      },
+      "cookies": {},
+      "queryString": "lat=34.1090526&lng=-118.4508668&type=Office%20Building&squareFootage=5000&occupants=50&useApis=1&width=3000&length=400&height=400",
+      "queryParameters": {
+        "lat": "34.1090526",
+        "lng": "-118.4508668",
+        "type": "Office Building",
+        "squareFootage": "5000",
+        "occupants": "50",
+        "useApis": "1",
+        "width": "3000",
+        "length": "400",
+        "height": "400"
+      }
+    },
+    "response": {
+      "statusCode": 200,
+      "headers": {
+        "x-powered-by": "Express",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "655",
+        "etag": "W/\"28f-F9uIXvq7qAmVOpZVOOji+AmcqLM\"",
+        "date": "Sun, 29 Mar 2020 09:29:39 GMT",
+        "connection": "keep-alive"
+      },
+      "body": {
+        "rating": 1.5,
+        "trees": {
+          "trees": 79,
+          "rating": 0
+        },
+        "carbon": {
+          "carbon": 56.5884320141259,
+          "rating": 0
+        },
+        "transit": {
+          "rating": 0,
+          "walk": {
+            "score": 1,
+            "description": "Car-Dependent",
+            "rating": 0
+          },
+          "transit": {
+            "score": 0,
+            "description": "No Nearby Transit",
+            "summary": "0 nearby routes: 0 bus, 0 rail, 0 other",
+            "rating": 0
+          },
+          "bike": {
+            "score": 3,
+            "description": "Somewhat Bikeable",
+            "rating": 0
+          },
+          "detailLink": "https://www.walkscore.com/score/loc/lat=34.1090526/lng=-118.4508668/?utm_source=ronakshah.net&utm_medium=ws_api&utm_campaign=ws_api"
+        },
+        "parkingSpaces": {
+          "spots": 12.5,
+          "rating": 2
+        },
+        "crimes": {
+          "crimes": 0,
+          "rating": 4
+        },
+        "house": {
+          "taxes": 13479,
+          "land_value": 875735,
+          "rating": 3
+        },
+        "dummyData": false
+      }
+    }
+  }
+]

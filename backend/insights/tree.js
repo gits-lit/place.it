@@ -33,7 +33,7 @@ module.exports = async function(lat, lng, width, length) {
                 rating: -1
             });
             console.log("Something went wrong");
-            console.log(err);
+            console.log(err.toString());
         }
     })
 }

@@ -3,3 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  a(href="https://placeit.netlify.com")
+    span Main Site
+  
+  br
+
+  a(href="#" onclick='window.open(`${window.location.hostname}:34444/specs/1/requests/request_qD09DyBxxi`)')
+    span Documentation

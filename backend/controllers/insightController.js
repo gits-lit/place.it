@@ -45,7 +45,6 @@ exports.handle_get_insight = async (req, res) => {
         lat : req.query.lat,
         lng : req.query.lng,
         type : req.query.type,
-        radius : req.query.radius,
         width : req.query.width,
         length : req.query.length,
         useApis : req.query.useApis,
