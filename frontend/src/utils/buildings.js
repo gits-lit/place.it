@@ -2,7 +2,7 @@ import { MercatorCoordinate } from 'mapbox-gl';
 import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
-export const placeBuilding = (map, lng, lat, color) => {
+export const placeBuilding = (map, lng, lat, color, length, width, height) => {
 
   // parameters to ensure the model is georeferenced correctly on the map
   var modelOrigin = [lng, lat];
@@ -62,12 +62,16 @@ export const placeBuilding = (map, lng, lat, color) => {
     directionalLight2.position.set(40, 70, 100).normalize();
     this.scene.add(directionalLight2);
 
-    var geometry = new THREE.BoxGeometry( 40, 0.2, 40 );
+    const ftLength = length  /3.28084;
+    const ftWidth = width / 3.28084;
+    const ftHeight = (height / 3.28084) / 100;
+
+    var geometry = new THREE.BoxGeometry( ftWidth, ftHeight, ftLength );
     var material = new THREE.MeshLambertMaterial( {color: color} );
     var cube = new THREE.Mesh( geometry, material );
     this.scene.add( cube );
-    TweenMax.to(cube.scale, 1, { x: 1, y: 400, z: 1 });
-    TweenMax.from(cube.position, 1,  {y: -40});
+    TweenMax.to(cube.scale, .5, { x: 1, y: 100, z: 1 });
+    TweenMax.to(cube.position, .5,  {y: ftHeight * 50});
     this.map = map;
 
     // use the Mapbox GL JS map canvas for three.js
@@ -97,8 +101,8 @@ export const placeBuilding = (map, lng, lat, color) => {
     var l = new THREE.Matrix4()
     .makeTranslation(
     modelTransform.translateX,
-    modelTransform.translateY - 0.0000002,
-    modelTransform.translateZ + 0.0000012
+    modelTransform.translateY,
+    modelTransform.translateZ
     )
     .scale(
     new THREE.Vector3(

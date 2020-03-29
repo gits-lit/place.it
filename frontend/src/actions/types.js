@@ -1,1 +1,2 @@
 export const CAROUSEL_UPDATE = 'CAROUSEL_UPDATE';
+export const FORM_UPDATE = 'FORM_UPDATE';

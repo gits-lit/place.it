@@ -1,4 +1,4 @@
-import { CAROUSEL_UPDATE } from './types';
+import { CAROUSEL_UPDATE, FORM_UPDATE } from './types';
 import buildingTypes from '../assets/building-types.json'
 
 let buildings = []
@@ -17,4 +17,15 @@ export const setBuildingType = (index) =>  async dispatch => {
       color: building[1].color
     }
   });
+}
+
+export const updateBuildingForm = (key, value) => async dispatch => {
+  console.log('updated');
+  dispatch({
+    type: FORM_UPDATE,
+    payload: {
+      key: key,
+      value: value
+    }
+  })
 }

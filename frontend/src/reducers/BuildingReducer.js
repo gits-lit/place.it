@@ -1,8 +1,14 @@
-import { CAROUSEL_UPDATE } from '../actions/types';
+import { CAROUSEL_UPDATE, FORM_UPDATE } from '../actions/types';
 
 const initialState = {
   type: '',
-  color: ''
+  color: '',
+  name: '',
+  occupancy: 0,
+  length: 0,
+  width: 0,
+  height: 0,
+  size: 0
 };
 
 const BuildingReducer = (state = initialState, action) => {
@@ -13,6 +19,11 @@ const BuildingReducer = (state = initialState, action) => {
         type: action.payload.type,
         color: action.payload.color
       };
+    case FORM_UPDATE:
+      return {
+        ...state,
+        [action.payload.key]: action.payload.value
+      }
   default:
       return state;
   }
