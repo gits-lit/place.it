@@ -5,5 +5,9 @@
 module.exports = function(squareFootage) {
     let intercept = 39.50294435044748;
     let coef = 0.003417097532735685;
-    return coef * squareFootage + intercept;
+    let carbon = coef * squareFootage + intercept;
+    return {
+        carbon: carbon,
+        rating: (carbon > 100) ? "bad" : (carbon > 50) ? "okay" : "amazing!"
+    }
 }
