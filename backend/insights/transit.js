@@ -33,7 +33,9 @@ module.exports = async function(lat, lng) {
                         detailLink: body.ws_link
                     })
                 } else {
-                    resolve(body.status)
+                    resolve({
+                        loading: "we're still loading data for this coordinate. please try again in 30 seconds."
+                    })
                 }
             }
         })
