@@ -6,9 +6,10 @@
     "start": "npm run documentation & node ./bin/www",
     "dev": "nodemon ./bin/www",
     "documentation": "./node_modules/@useoptic/cli/bin/run spec",
-    "heroku" : "../node_modules/@useoptic/cli/bin/run spec &   node ./bin/www"
+    "heroku": "../node_modules/@useoptic/cli/bin/run spec &   node ./bin/www"
   },
   "dependencies": {
+    "async": "^3.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",

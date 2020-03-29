@@ -5,6 +5,7 @@ const getCrimes = require("../insights/crime");
 const getHouseData = require("../insights/house");
 const getPollution = require("../insights/pollution");
 const calculateRating = require("../insights/rating");
+const parallel = require("../utils/parallel")
 
 const dummyData = {
     "transit": {
@@ -72,11 +73,46 @@ exports.handle_get_insight = async (req, res) => {
             let parkingSpaces = getParkingData(parameters.type, parameters.squareFootage, parameters.occupants);
             let pollution = getPollution(parameters.squareFootage);
 
-            let trees = await getTreeData(parameters.lat, parameters.lng, parameters.width, parameters.length);
-            let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
-            let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
-            let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
+            let {trees, transit, crimes, houseData} = await parallel({
+                trees: (callback) => {
+                    getTreeData(parameters.lat, parameters.lng, parameters.width, parameters.length).then(result => {
+                        callback(null, result);
+                    })
+                },
+                transit: (callback) => {
+                    if (parameters.useApis == 1) {
+                        getTransitData(parameters.lat, parameters.lng).then(result => {
+                            callback(null, result);
+                        })
+                    } else {
+                        callback(null, dummyData.transit);
+                    }
+                },
+                crimes: (callback) => {
+                    if (parameters.useApis == 1) {
+                        getCrimes(parameters.lat, parameters.lng).then(result => {
+                            callback(null, result);
+                        })
+                    } else {
+                        callback(null, dummyData.crimes);
+                    }
+                },
+                houseData: (callback) => {
+                    if (parameters.useApis == 1) {
+                        getHouseData(parameters.lat, parameters.lng).then(result => {
+                            callback(null, result);
+                        })
+                    } else {
+                        callback(null, dummyData.houseData);
+                    }
+                }
+            })
             
+            // let trees = await getTreeData(parameters.lat, parameters.lng, parameters.width, parameters.length);
+            // let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
+            // let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
+            // let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
+
             let {rating, tips} = calculateRating(trees, parkingSpaces, pollution, transit, crimes, houseData);
 
             res.status(200);
