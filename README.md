@@ -7,7 +7,7 @@ Sometimes the need to build new structures is unavoidable. At UC Santa Cruz, the
 ## What it does
 **place.it** allows Los Angeles's city planners, architects, and everyday citizens to understand the impact and cost associated with building structures in certain areas through advanced analytics based off real city datasets. Users start by generating custom buildings simply by filling out a form and clicking on a map. Users can build as many buildings as they would like at a time. When the proposed construction site is finished being planned, users can click a single button to simulate the impacts of the buildings. Our research on local laws and ordinances, our machine learning models trained on city data, and our utilization of numerous third-party APIs combine to provide information about the effects that the user's planned site has, as well as tips on how to improve the construction proposal. We additionally provide separate information on the impact of every single building planned by the user. What's more, our [API](https://placeitapi.herokuapp.com/) is documented and our ratings on environmental impact, carbon emissions, housing values, crime rates, parking, and transit could be made possible for use by any other developer.
 
-![place.it](https://im2.ezgif.com/tmp/ezgif-2-9918e63f6d16.gif)
+![place.it](images/placeit.gif)
 
 ## How it's built
 
@@ -72,7 +72,7 @@ What's more, we're proud of how well we were able to document it. We made robust
 
 We're also proud of how well we adapted to a virtual hackathon. Our team stayed in strong communication throughout the hackathon, constantly staying on both Zoom and Facebook messenger. Coupled with Git for version control, we were able to work efficiently and effectively, despite the fact that we were in separate locations. 
 
-![Buildings Data](https://im2.ezgif.com/tmp/ezgif-2-ee4a800a4548.gif)
+![Buildings Data](images/buildingsdata.gif)
 
 ___Data and UI combine to make **place.it** a useful tool for anyone.___
 
