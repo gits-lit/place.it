@@ -59,7 +59,7 @@ if 'formatted_address' in results:
 
         response = response['data']
         if response is None:
-                print("No Property Found")
+                print(jsonResponse)
                 sys.exit(1)
         if 'taxes' in response:
                 amt = response['taxes'][0]['amount']
@@ -69,10 +69,6 @@ if 'formatted_address' in results:
                 # print(assessments)
                 # full assessments is [{'year': 2019, 'land_value': 240757, 'improvement_value': 82576, 'total_value': 323333}]
                 jsonResponse['land_value'] = assessments[0]['land_value']
-        else:
-                print("Assessments not available for this location")
-else:
-        print("An address does not exist here")
 # example: {'taxes': 4053, 'land_value': 240757}
 print(jsonResponse)
         
