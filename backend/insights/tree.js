@@ -22,9 +22,9 @@ module.exports = async function(lat, lng, radius) {
             trees = parseInt(trees.toString());
             resolve(trees);
         } catch (err) {
-            reject({
-                err: err
-            });
+            resolve(0);
+            console.log("Something went wrong");
+            console.log(err);
         }
     })
 }

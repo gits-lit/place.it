@@ -9,7 +9,8 @@ module.exports = async function(lat, lng) {
             lat: lat, lon: lng
         }, (err, crimes) => {
             if (err) {
-                resolve(err);
+                console.log(err);
+                resolve(0);
             } else {
                 resolve(crimes.length);
             }

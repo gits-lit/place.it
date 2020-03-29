@@ -41,5 +41,9 @@ const parkingRates = {
  * Returns the estimated number of parking spaces required for the property type and size. a third variable, occupants, is required for residential units
  */
 module.exports = function(type, squareFootage, occupants) {
-    return parkingRates[type](squareFootage, occupants);
+    if (type in parkingRates) {
+        return parkingRates[type](squareFootage, occupants);
+    } else {
+        return "Invalid Type";
+    }
 }

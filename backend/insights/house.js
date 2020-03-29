@@ -3,12 +3,14 @@
  */
 module.exports = async function(lat, lng) {
     return new Promise(async (resolve, reject) => {
+        debugger
+
         let getHouseData = new Promise((success, nosuccess) => {
 
             const { spawn } = require('child_process');
 
-            gmapKey = process.env.GOOGLE_MAPS_KEY;
-            estatedKey = process.env.ESTATED_KEY;
+            let gmapKey = process.env.GOOGLE_MAPS_KEY;
+            let estatedKey = process.env.ESTATED_KEY;
 
             const pyprog = spawn('python', ['./modules/houseValueApi/getHouseValue.py', gmapKey, estatedKey, lat, lng]);
 
@@ -23,7 +25,7 @@ module.exports = async function(lat, lng) {
     
         try {
             let houseData = await getHouseData;
-            houseData = JSON.parse(houseData);
+            houseData = JSON.parse(houseData.toString().split("'").join("\""));
             resolve(houseData);
         } catch (err) {
             reject({

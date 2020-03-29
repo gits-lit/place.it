@@ -4,41 +4,81 @@ const getParkingData = require("../insights/parking");
 const getCrimes = require("../insights/crime");
 const getHouseData = require("../insights/house");
 
-exports.handle_get_insight = async (req, res) => {
-    const lat = req.query.lat;
-    const lng = req.query.lng;
-    const type = req.query.type;
-    const radius = req.query.radius; // deprecated
-    const width = req.query.width;
-    const length = req.query.length;
-    const useApis = req.query.useApis;
+const dummyData = {
+    transit: {
+        walk: {
+        score: 44,
+        description: "Car-Dependent"
+        },
+        transit: {
+        score: 56,
+        description: "Good Transit",
+        summary: "19 nearby routes: 19 bus, 0 rail, 0 other"
+        },
+        bike: {
+        score: 46,
+        description: "Somewhat Bikeable"
+        },
+        detailLink: "https://www.walkscore.com/score/loc/lat=34.068972/lng=-118.456386/?utm_source=ronakshah.net&utm_medium=ws_api&utm_campaign=ws_api"
+    },
+    crimes: 4,
+    houseData: {
+        taxes: 3273,
+        land_value: 87672
+    }
+}
 
-    const squareFootage = req.query.squareFootage;
-    const occupants = req.query.occupants;
-    const height = req.query.height;
+
+exports.handle_get_insight = async (req, res) => {
+
+    const parameters = {
+        lat : req.query.lat,
+        lng : req.query.lng,
+        type : req.query.type,
+        radius : req.query.radius,
+        width : req.query.width,
+        length : req.query.length,
+        useApis : req.query.useApis,
+
+        squareFootage : req.query.squareFootage,
+        occupants : req.query.occupants,
+        height : req.query.height,
+    }
+
+    let errors = []
+    for (let param in parameters) {
+        if (parameters[param] == undefined) {
+            errors.push(`${param} was not specified\n`)
+        }
+    }
     
+    if (errors.length != 0) {
+        res.status(422);
+        res.json(errors);
+    }
     
     try {
-        let trees = await getTreeData(lat, lng, radius);
-        let parkingSpaces = getParkingData(type, squareFootage, occupants);
+        let trees = await getTreeData(parameters.lat, parameters.lng, parameters.radius);
+        let parkingSpaces = getParkingData(parameters.type, parameters.squareFootage, parameters.occupants);
 
-        let transit = (useApis == 1) ? await getTransitData(lat, lng) : "APIs Not Enabled to Preserve Calls";
-        let crimes = (useApis == 1) ? await getCrimes(lat, lng) : "APIs Not Enabled to Preserve Calls";
-        let houseData = (useApis == 0) ? await getHouseData(lat, lng) : "APIs Not Enabled to Preserve Calls";
-        console.log(crimes)
+        let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
+        let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
+        let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
+
 
         res.status(200);
         res.json({
             rating: "A",
-            jobs: -300,
-            trees: parseInt(trees.toString()),
+            trees: trees,
             carbon: 500,
             transit: transit,
             parkingSpaces: parkingSpaces,
             crimes: crimes,
-            house: houseData
+            house: houseData,
+            dummyData: parameters.useApis != 1
         });
     } catch(err) {
+        console.log(err)
         res.status(500);
         res.json({
             error: err
