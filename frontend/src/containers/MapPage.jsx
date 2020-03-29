@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar';
 import SideBar from './SideBar';
 import Score from './Score';
 import Analytics from '../components/Analytics';
+import BuildingViewer from '../components/BuildingViewer';
 import { notify } from '../utils';
 import {
   placeBuilding,
@@ -27,7 +28,9 @@ let width,
 
 const MapPage = props => {
 
-  const [vis, setVis] = useState(true);
+  const [vis, setVis] = useState(false);
+  const [vis1, setVis1] = useState(false);
+
 
   const calculateScore = () => {
     setVis(true);
@@ -95,8 +98,9 @@ const MapPage = props => {
   return (
     <div>
       <SideBar calculateScore={calculateScore} />
-      <NavBar calculateScore={calculateScore} />
+      <NavBar calculateScore={calculateScore} viewBuildings={() => setVis1(true)}/>
       <Analytics vis={vis} setVis={() => setVis(false)} />
+      <BuildingViewer vis={vis1} setVis={() => setVis1(false)} />
       <Map mapClick={mapClick} mapLoad={mapLoad} />
       <Score />
     </div>
