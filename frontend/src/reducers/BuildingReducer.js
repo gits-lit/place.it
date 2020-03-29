@@ -1,4 +1,4 @@
-import { ADD_BUILDINGS, CAROUSEL_UPDATE, FORM_UPDATE } from '../actions/types';
+import { ADD_BUILDINGS, CAROUSEL_UPDATE, CLEAR_BUILDINGS, FORM_UPDATE } from '../actions/types';
 
 const initialState = {
   type: '',
@@ -38,6 +38,11 @@ const BuildingReducer = (state = initialState, action) => {
       return {
         ...state,
         buildings: [...state.buildings, building]
+      }
+    case CLEAR_BUILDINGS:
+      return {
+        ...state,
+        buildings: []
       }
   default:
       return state;

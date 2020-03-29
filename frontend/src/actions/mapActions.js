@@ -2,21 +2,22 @@ import { MercatorCoordinate } from 'mapbox-gl';
 import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
-import { ADD_BUILDINGS } from './types';
+import { ADD_BUILDINGS, CLEAR_BUILDINGS } from './types';
+import { notify } from '../utils';
 
 export const placeBuilding = (map, lng, lat, color, length, width, height) => {
 
   // parameters to ensure the model is georeferenced correctly on the map
-  var modelOrigin = [lng, lat];
-  var modelAltitude = 0;
-  var modelRotate = [Math.PI / 2, - Math.PI / 4 + 0.1, 0];
+  const modelOrigin = [lng, lat];
+  const modelAltitude = 0;
+  const modelRotate = [Math.PI / 2, - Math.PI / 4 + 0.1, 0];
 
-  var modelAsMercatorCoordinate = MercatorCoordinate.fromLngLat(
+  const modelAsMercatorCoordinate = MercatorCoordinate.fromLngLat(
     modelOrigin,
     modelAltitude
   );
 
-  var modelTransform = {
+  const modelTransform = {
     translateX: modelAsMercatorCoordinate.x,
     translateY: modelAsMercatorCoordinate.y,
     translateZ: modelAsMercatorCoordinate.z,
@@ -30,17 +31,17 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
   };
 
   // Insert the layer beneath any symbol layer.
-  var layers = map.getStyle().layers;
+  const layers = map.getStyle().layers;
 
-  var labelLayerId;
-  for (var i = 0; i < layers.length; i++) {
+  let labelLayerId;
+  for (let i = 0; i < layers.length; i++) {
     if (layers[i].type === 'custom') {
     labelLayerId = layers[i].id;
     break;
     }
   }
 
-  var customLayer = {
+  const customLayer = {
     id: lat.toString() + lng.toString(),
     type: 'custom',
     renderingMode: '3d',
@@ -67,11 +68,11 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
     this.scene = new THREE.Scene();
 
     // create two three.js lights to illuminate the model
-    var directionalLight = new THREE.DirectionalLight(0xeeeeee);
+    const directionalLight = new THREE.DirectionalLight(0xeeeeee);
     directionalLight.position.set(40, -70, 100).normalize();
     this.scene.add(directionalLight);
 
-    var directionalLight2 = new THREE.DirectionalLight(0xeeeeee);
+    const directionalLight2 = new THREE.DirectionalLight(0xeeeeee);
     directionalLight2.position.set(40, 70, 100).normalize();
     this.scene.add(directionalLight2);
 
@@ -79,9 +80,9 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
     const ftWidth = width / 3.28084;
     const ftHeight = (height / 3.28084) / 100;
 
-    var geometry = new THREE.BoxGeometry( ftWidth, ftHeight, ftLength );
-    var material = new THREE.MeshLambertMaterial( {color: color} );
-    var cube = new THREE.Mesh( geometry, material );
+    const geometry = new THREE.BoxGeometry( ftWidth, ftHeight, ftLength );
+    const material = new THREE.MeshLambertMaterial( {color: color} );
+    const cube = new THREE.Mesh( geometry, material );
     this.scene.add( cube );
     TweenMax.to(cube.scale, .5, { x: 1, y: 100, z: 1 });
     TweenMax.to(cube.position, .5,  {y: ftHeight * 50});
@@ -97,21 +98,21 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
     this.renderer.autoClear = false;
     },
     render: function(gl, matrix) {
-    var rotationX = new THREE.Matrix4().makeRotationAxis(
+    const rotationX = new THREE.Matrix4().makeRotationAxis(
     new THREE.Vector3(1, 0, 0),
     modelTransform.rotateX
     );
-    var rotationY = new THREE.Matrix4().makeRotationAxis(
+    const rotationY = new THREE.Matrix4().makeRotationAxis(
     new THREE.Vector3(0, 1, 0),
     modelTransform.rotateY
     );
-    var rotationZ = new THREE.Matrix4().makeRotationAxis(
+    const rotationZ = new THREE.Matrix4().makeRotationAxis(
     new THREE.Vector3(0, 0, 1),
     modelTransform.rotateZ
     );
 
-    var m = new THREE.Matrix4().fromArray(matrix);
-    var l = new THREE.Matrix4()
+    const m = new THREE.Matrix4().fromArray(matrix);
+    const l = new THREE.Matrix4()
     .makeTranslation(
     modelTransform.translateX,
     modelTransform.translateY,
@@ -140,7 +141,7 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => {
   }
   catch (error) {
     // TODO: Notify
-    console.error('already exists no allow');
+    notify("Can't Build", "There's already a building there!");
   }
 }
 
@@ -167,8 +168,18 @@ export const loadBuildings = (map) => {
   });
 }
 
-export const clearBuildings = (map) => {
+export const clearBuildings = (map) => async dispatch => {
+  const layers = map.getStyle().layers;
 
+  let labelLayerId;
+  for (let i = 0; i < layers.length; i++) {
+    if (layers[i].type === 'custom') {
+      map.removeLayer(layers[i].id);
+    }
+  }
+  dispatch({
+    type: CLEAR_BUILDINGS,
+  });
 }
 
 export const addBuildings = () => async dispatch => {
