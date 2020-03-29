@@ -3,6 +3,7 @@ const getTransitData = require("../insights/transit");
 const getParkingData = require("../insights/parking");
 const getCrimes = require("../insights/crime");
 const getHouseData = require("../insights/house");
+const getPollution = require("../insights/pollution");
 
 const dummyData = {
     transit: {
@@ -55,32 +56,34 @@ exports.handle_get_insight = async (req, res) => {
     if (errors.length != 0) {
         res.status(422);
         res.json(errors);
-    }
-    
-    try {
-        let trees = await getTreeData(parameters.lat, parameters.lng, parameters.radius);
-        let parkingSpaces = getParkingData(parameters.type, parameters.squareFootage, parameters.occupants);
+        res.end();
+    } else {
+        
+        try {
+            let trees = await getTreeData(parameters.lat, parameters.lng, parameters.radius);
+            let parkingSpaces = getParkingData(parameters.type, parameters.squareFootage, parameters.occupants);
+            let pollution = getPollution(parameters.squareFootage);
+            let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
+            let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
+            let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
 
-        let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
-        let crimes = (parameters.useApis == 1) ? await getCrimes(parameters.lat, parameters.lng) : dummyData.crimes;
-        let houseData = (parameters.useApis == 1) ? await getHouseData(parameters.lat, parameters.lng) : dummyData.houseData;
-
-        res.status(200);
-        res.json({
-            rating: "A",
-            trees: trees,
-            carbon: 500,
-            transit: transit,
-            parkingSpaces: parkingSpaces,
-            crimes: crimes,
-            house: houseData,
-            dummyData: parameters.useApis != 1
-        });
-    } catch(err) {
-        console.log(err)
-        res.status(500);
-        res.json({
-            error: err
-        })
+            res.status(200);
+            res.json({
+                rating: "A",
+                trees: trees,
+                carbon: pollution,
+                transit: transit,
+                parkingSpaces: parkingSpaces,
+                crimes: crimes,
+                house: houseData,
+                dummyData: parameters.useApis != 1
+            });
+        } catch(err) {
+            console.log(err)
+            res.status(500);
+            res.json({
+                error: err
+            })
+        }
     }
 }
