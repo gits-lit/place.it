@@ -69,6 +69,7 @@ if 'formatted_address' in results:
                 print("Assessments not available for this location")
 else:
         print("An address does not exist here")
+# example: {'taxes': 4053, 'land_value': 240757}
 print(jsonResponse)
         
         
