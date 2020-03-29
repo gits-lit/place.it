@@ -20,7 +20,6 @@ export const setBuildingType = (index) =>  async dispatch => {
 }
 
 export const updateBuildingForm = (key, value) => async dispatch => {
-  console.log('updated');
   dispatch({
     type: FORM_UPDATE,
     payload: {

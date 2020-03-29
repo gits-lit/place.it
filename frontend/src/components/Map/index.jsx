@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 const Map = ReactMapboxGl({
@@ -7,9 +7,6 @@ const Map = ReactMapboxGl({
 });
 
 const MapComponent = (props) => {
-  useEffect(() => {
-    console.log('hiiii');
-  });
   return (
     <Map
       antialias={true}
