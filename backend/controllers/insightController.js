@@ -60,7 +60,7 @@ exports.handle_get_insight = async (req, res) => {
     } else {
         
         try {
-            let trees = await getTreeData(parameters.lat, parameters.lng, parameters.radius);
+            let trees = await getTreeData(parameters.lat, parameters.lng, parameters.width, parameters.length);
             let parkingSpaces = getParkingData(parameters.type, parameters.squareFootage, parameters.occupants);
             let pollution = getPollution(parameters.squareFootage);
             let transit = (parameters.useApis == 1) ? await getTransitData(parameters.lat, parameters.lng) : dummyData.transit;
