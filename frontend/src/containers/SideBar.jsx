@@ -17,8 +17,6 @@ const SideBarForm = props => {
   }
 
   const calculateScore = () => {
-    console.log('hi')
-    console.log(props.buildings);
     props.getData(props.buildings);
   }
 

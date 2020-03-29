@@ -10,8 +10,8 @@ const initialState = {
   height: 0,
   size: 0,
   buildings: [],
-  lat: 0,
-  lng: 0,
+  lat: '',
+  lng: '',
   map: null
 };
 

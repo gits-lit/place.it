@@ -141,7 +141,6 @@ export const placeBuilding = (map, lng, lat, color, length, width, height) => as
   try {
     map.addLayer(customLayer, labelLayerId);
     allLayers.push(customLayer.id);
-    console.log(allLayers);
     window.map = map;
     dispatch({
       type: UPDATE_COORDS,

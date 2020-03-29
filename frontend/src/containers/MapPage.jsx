@@ -16,8 +16,8 @@ let width, height, length, size, occupancy = 0;
 
 const MapPage = (props) => {
 
-  const addBuildings = () => {
-    props.addBuildings();
+  const addBuildings = (lat, lng) => {
+    props.addBuildings(lat, lng);
   }
 
   const placeBuilding = (map, lng, lat, color, length, width, height) => {
