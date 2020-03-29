@@ -31,8 +31,12 @@ const MapPage = props => {
 
   const [vis, setVis] = useState(false);
   const calculateScore = () => {
-    setVis(true);
-    props.getData(buildings);
+    props.getData(buildings).then(() => {
+      setVis(true);
+    }).catch((err) => {
+      // eh don't really need to do anything here just wanted to clean console.
+    });
+
   }
 
   const addBuildings = (lat, lng) => {

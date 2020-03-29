@@ -6,6 +6,9 @@ import { notify, gradeToScore, scoreToGrade } from '../utils';
 export const getData = (array) => async dispatch => {
   if (!array || array.length == 0) {
     notify('Error', 'There appears to be no buildings!');
+    return new Promise( async (resolve, reject) => {
+      reject('There appears to be no buildings');
+    });
   }
   else {
     dispatch({
