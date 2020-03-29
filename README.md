@@ -63,8 +63,10 @@ ___Our application's UI was designed collaboratively utilizing Figma.___
 
 Our application currently sits on the web using [Netlify](https://www.netlify.com/) and our server is deployed with [Heroku](https://www.heroku.com/). Feel free to access our website at any time and if something's not working, leave a comment on this Devpost!
 
-## challenges
+## Challenges
+The biggest challenge we had was acquiring the best feature variables for generating a model using [SciKit](https://scikit-learn.org/stable/) to predict Carbon Emissions (tons of CO2) from square footage and type of building. Just using the raw data, we were getting terrible linear fits, with an R^2 value of 0. We tried predicting using different columns provided by [Los Angeles](https://data.lacity.org/A-Livable-and-Sustainable-City/Existing-Buildings-Energy-Water-Efficiency-EBEWE-P/9yda-i4ya), including energy usage and year built, but nothing was working.
 
+However, using data visualization tools such as matplotlib and [radiant](https://radiant-rstats.github.io/docs/), we were able to deduce that there are a few outliers skewing the data. After removing those our model was able to predict the Carbon Emissions with an R^2 value of 0.7. We use this model to score potential building placements in terms of pollution generated.
 ## accomplishments
 
 ## takeaways
