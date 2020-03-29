@@ -20,6 +20,7 @@ const SideBarForm = props => {
     <SideBar
       setValue={setValue}
       clearBuildings={clearBuildings}
+      calculateScore={props.calculateScore}
     />
   );
 };
