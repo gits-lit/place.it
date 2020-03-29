@@ -1,4 +1,4 @@
-import { ADD_BUILDINGS, CAROUSEL_UPDATE, CLEAR_BUILDINGS, FORM_UPDATE } from '../actions/types';
+import { ADD_BUILDINGS, ADD_MAP, CAROUSEL_UPDATE, CLEAR_BUILDINGS, FORM_UPDATE } from '../actions/types';
 
 const initialState = {
   type: '',
@@ -9,7 +9,8 @@ const initialState = {
   width: 0,
   height: 0,
   size: 0,
-  buildings: []
+  buildings: [],
+  map: null
 };
 
 const BuildingReducer = (state = initialState, action) => {
